@@ -1,5 +1,5 @@
 $( document ).ready(function() {
-    console.log("RExADY");
+    console.log("READY");
     // var newDiv = makeElement();
     // $( "#nameMsg" ).hide();
     // $(newDiv).hide();
