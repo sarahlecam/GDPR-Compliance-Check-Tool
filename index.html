@@ -129,16 +129,34 @@
     </style>
     <script>
         $( document ).ready(function() {
-            console.log("READY");
-
-            $( "#nameMsg" ).hide();
+            // console.log("READY");
+            var newDiv = makeElement();
+            // $( "#nameMsg" ).hide();
+            $(newDiv).hide();
             $( "#name" ).focusin(function() {
-                $( "#nameMsg" ).show();
+                show(newDiv);
             });
             $( "#name" ).focusout(function() {
-                $( "#nameMsg" ).hide();
+                hide(newDiv);
             });
         });
+
+
+        function show(dived) {
+            $(dived).show();
+        }
+
+        function hide(dived) {
+            $(dived).hide();
+        }
+
+        function makeElement() {
+            var nameBox = document.createElement("div");
+            nameBox.setAttribute("id", "nameMsg");
+            // nameBox.setAttribute("");
+            nameBox.innerHTML = "Your name is being collected to able to murder you in the future !!!";
+            $(nameBox).appendTo(document.body);
+        }
 
 
     </script>
@@ -153,7 +171,6 @@
         <legend><span class="number">1</span>Your basic info</legend>
         <label for="name">Name:</label>
         <input type="text" id="name" name="user_name"></input>
-        <span id="nameMsg">Your name is being collected to able to murder you in the future !!! </span>
 
         <label for="mail">Email:</label>
         <input type="email" id="mail" name="user_email"></input>
