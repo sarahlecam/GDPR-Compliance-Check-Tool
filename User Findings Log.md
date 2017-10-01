@@ -1,1 +1,0 @@
-User Findings Log
