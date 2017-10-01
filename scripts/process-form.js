@@ -1,14 +1,14 @@
 $( document ).ready(function() {
-    // console.log("READY");
-    var newDiv = makeElement();
+    console.log("RExADY");
+    // var newDiv = makeElement();
     // $( "#nameMsg" ).hide();
-    $(newDiv).hide();
-    $( "#name" ).focusin(function() {
-        show(newDiv);
-    });
-    $( "#name" ).focusout(function() {
-        hide(newDiv);
-    });
+    // $(newDiv).hide();
+    // $( "#name" ).focusin(function() {
+    //     show(newDiv);
+    // });
+    // $( "#name" ).focusout(function() {
+    //     hide(newDiv);
+    // });
 });
 
 
