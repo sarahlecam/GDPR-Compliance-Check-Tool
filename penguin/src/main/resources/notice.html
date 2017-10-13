@@ -1,10 +1,12 @@
 <html>
 <script data-require="jquery@*" data-semver="3.1.1" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script>
-
+    url = (window.location.href).split("/");
+    companyName = url[url.length - 1];
+    console.log(companyName);
     var table = `<tr style='height: 60px'><th>Data Type</th><th>Reason</th><th>Share?</th></tr>`;
     $("#inputList").html(table);
-    $.getJSON("/Laptop-Company", function(inputs){
+    $.getJSON("/" + companyName, function(inputs){
         for(var i=0; i < inputs.length; i++) {
             var input = inputs[i];
             $("#companyname").text(input.companyName);

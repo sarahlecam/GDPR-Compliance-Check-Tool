@@ -149,10 +149,10 @@ function individualData() {
         + `</form>`
 		+ `<table style="width:100%" id="inputList">`
         + `</table>`
-		+ `<form action="" onsubmit="return false;">`
+		+ `<form action="" onsubmit="location.replace('/notice/${companyName}'); return false;">`
 //		+ `<input type="text" placeholder="email"> <br>`
 		+ `<button onclick="startForm()">Back</button>`
-		+ `<button type="submit" onclick="">Continue</button>`
+		+ `<button type="submit">Continue</button>`
 		+ `</form>`).appendTo(windowed);
 	getInputs();
 }
