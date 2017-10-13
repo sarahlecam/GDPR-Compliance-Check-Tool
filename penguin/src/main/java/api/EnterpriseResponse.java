@@ -33,11 +33,24 @@ public class EnterpriseResponse {
     @JsonProperty
     String companyName;
 
+    @JsonProperty
+    String address;
+
+    @JsonProperty
+    String contact;
+
+    @JsonProperty
+    String website;
+
    public EnterpriseResponse(DatainfoRecord dbRecord) {
         this.dataType = dbRecord.getDatatype();
         this.reason = dbRecord.getReason();
         this.shared = dbRecord.getShared();
         this.id = dbRecord.getId();
         this.companyName = dbRecord.getCompanyname();
+        this.address = dbRecord.getAddress();
+        this.contact = dbRecord.getContact();
+        this.website = dbRecord.getWebsite();
+
     }
 }

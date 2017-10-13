@@ -96,6 +96,7 @@ h1 {
 	var windowed;
 	var companyName;
 	var companyDescription;
+	var address;
 	
 	$(function(){
         windowed = $("#form");
@@ -107,6 +108,8 @@ function startForm() {
 		+ `<h2>Company Information</h2> <br>`
 		+ `Company Name: `
 		+ `<input type="text" id="companyName"><br>`
+        + `Address: `
+        + `<input type="text" id="address"><br>`
 		+ `Company Description: <br>`
 		+ `<textarea rows="5" cols="60" id="description"></textarea><br>`
 		+ `<button type="submit">Continue</button>`
@@ -117,6 +120,7 @@ function submitComp() {
 	companyName = $("#companyName").val();
 //	console.log(companyName);
 	companyDescription = $("#description").val();
+	address = $("#address").val();
 //    console.log(companyDescription);
     individualData()
 }
@@ -148,7 +152,7 @@ function individualData() {
 		+ `<form action="" onsubmit="return false;">`
 //		+ `<input type="text" placeholder="email"> <br>`
 		+ `<button onclick="startForm()">Back</button>`
-		+ `<button type="submit" onclick="showResults()">Continue</button>`
+		+ `<button type="submit" onclick="">Continue</button>`
 		+ `</form>`).appendTo(windowed);
 	getInputs();
 }
@@ -157,6 +161,7 @@ function showResults() {
 	windowed.empty();
 	$(`<div>Company Name: ${companyName} </div>`).appendTo(windowed);
 	$(`<div>Company Description: ${companyDescription} </div>`).appendTo(windowed);
+    $(`<div>Address: ${address} </div>`).appendTo(windowed);
     $(`<button onclick="individualData()">Back</button>`).appendTo(windowed);
 
 }
@@ -177,7 +182,7 @@ function saveData() {
     $.ajax({
         url: "",
         type: "POST",
-        data: JSON.stringify({"companyName": companyName, "dataType": type, "reason": reason, "shared": share}),
+        data: JSON.stringify({"companyName": companyName, "address": address, "dataType": type, "reason": reason, "shared": share}),
         contentType: "application/json",
         dataType: "json",
         success: function (id) {

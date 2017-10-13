@@ -15,6 +15,9 @@ CREATE TABLE datainfo (
   dataType VARCHAR(255),
   reason VARCHAR(1024),
   shared BIT,
+  address VARCHAR (255),
+  contact VARCHAR (255),
+  website VARCHAR (255),
   PRIMARY KEY (id)
 );
 

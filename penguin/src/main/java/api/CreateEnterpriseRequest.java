@@ -22,4 +22,10 @@ public class CreateEnterpriseRequest {
 
     public Boolean shared;
 
+    public String address;
+
+    public String contact;
+
+    public String website;
+
 }

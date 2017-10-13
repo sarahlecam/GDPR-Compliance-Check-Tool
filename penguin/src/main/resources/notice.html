@@ -1,0 +1,42 @@
+<html>
+<script data-require="jquery@*" data-semver="3.1.1" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+
+    var table = `<tr style='height: 60px'><th>Data Type</th><th>Reason</th><th>Share?</th></tr>`;
+    $("#inputList").html(table);
+    $.getJSON("/Laptop-Company", function(inputs){
+        for(var i=0; i < inputs.length; i++) {
+            var input = inputs[i];
+            $("#companyname").text(input.companyName);
+            if (input.shared == 0)
+            {
+                $(`<div>We collect<span>${input.dataType}</span> in order to <span>${input.reason}</span>.This data will not be shared with third parties without user's affirmative consent for any other purpose.</div>`)
+                    .appendTo($("#notice"));
+            }
+            else{
+                $(`<div>We collect<span>${input.dataType}</span> in order to <span>${input.reason}</span>.This data will be shared with third parties without user's affirmative consent for any other purpose.</div>`)
+                    .appendTo($("#notice"));
+            }
+        }
+    });
+
+</script>
+<body>
+<div id="notice">
+</div>
+<p style="text-align: center;"><strong>PRIVACY NOTICE</strong></p>
+<p style="text-align: justify;"><span style="text-decoration: underline;"><strong>About Us</strong></span></p>
+<p style="text-align: justify;"><strong><span id="companyname">Company Name</span>, Address, Contact Information, Website</strong></p>
+<p style="text-align: justify;"><strong>Type of Company</strong></p>
+<p style="text-align: justify;"><strong>DPO Name and Contact</strong></p>
+<p style="text-align: justify;"><strong><span style="text-decoration: underline;">Data Collection</span></strong></p>
+<p style="text-align: justify;">&nbsp;</p>
+<p style="text-align: justify;">We collect ____ in order to ________. _____ data will not be shared with third parties without user's affirmative consent for any other purpose.&nbsp; &nbsp;</p>
+<p style="text-align: justify;">OR</p>
+<p style="text-align: justify;">We collect ____ in order to ________. _____ data may be shared with third parties for ________ (based on user's affirmative opt-in consent).&nbsp;</p>
+<p style="text-align: justify;">Ex.&nbsp;</p>
+<p style="text-align: justify;">Information that you directly provide us with: In order to provide you with our service, we require personal information such as your ______. This information is necessary to run our business. This information will not be shared with third parties without your affirmative consent.&nbsp;</p>
+<p style="text-align: justify;">Information that you provide us with as you use our service: We collect information from your activity on our service such as what you click, how long you spend viewing content, and what content you interact with. This information is necessary in order to cater our service to your experience. This information will not be shared with third parties for marketing purposes without your affirmative consent. This information may be shared with third parties for the purpose of aggragating anonymized data in order to improve our service.&nbsp;</p>
+</body>
+
+</html>

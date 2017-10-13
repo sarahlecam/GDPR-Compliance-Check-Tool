@@ -23,4 +23,11 @@ public class StaticHtmlController {
         Resources.getResource("testForm.html");
         return Resources.toString(Resources.getResource("testForm.html"), UTF_8);
     }
+
+    @GET
+    @Path("/notice/{companyName}")
+    public String getNotice(@PathParam("companyName") String companyName) throws IOException {
+        Resources.getResource("notice.html");
+        return Resources.toString(Resources.getResource("notice.html"), UTF_8);
+    }
 }

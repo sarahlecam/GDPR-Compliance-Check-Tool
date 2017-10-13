@@ -25,7 +25,7 @@ public class EnterpriseController {
     @POST
     public int createReceipt(@Valid @NotNull CreateEnterpriseRequest enterprise) {
 
-        return enterpriseDao.insert(enterprise.dataType,enterprise.reason, enterprise.shared,enterprise.companyName);
+        return enterpriseDao.insert(enterprise.dataType,enterprise.reason, enterprise.shared,enterprise.companyName,enterprise.address,enterprise.contact,enterprise.website);
     }
 
     @GET
