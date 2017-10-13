@@ -98,7 +98,7 @@ h1 {
 	var companyDescription;
 	
 	$(function(){
-	windowed = $("#form");
+        windowed = $("#form");
 })
 
 function startForm() {
@@ -144,18 +144,21 @@ function individualData() {
         + `<button id="save-data" onclick="return saveData()">Save</button>`
         + `</form>`
 		+ `<table style="width:100%" id="inputList">`
-		+ `<tr style='height: 60px'><th>Data Type</th><th>Reason</th><th>Share?</th></tr>`
         + `</table>`
 		+ `<form action="" onsubmit="return false;">`
 //		+ `<input type="text" placeholder="email"> <br>`
 		+ `<button onclick="startForm()">Back</button>`
 		+ `<button type="submit" onclick="showResults()">Continue</button>`
 		+ `</form>`).appendTo(windowed);
+	getInputs();
 }
 
 function showResults() {
 	windowed.empty();
 	$(`<div>Company Name: ${companyName} </div>`).appendTo(windowed);
+	$(`<div>Company Description: ${companyDescription} </div>`).appendTo(windowed);
+    $(`<button onclick="individualData()">Back</button>`).appendTo(windowed);
+
 }
 
 function saveData() {
@@ -178,8 +181,8 @@ function saveData() {
         contentType: "application/json",
         dataType: "json",
         success: function (id) {
-            console.log("success");
-//            getReceipt(id);
+//            console.log("success");
+            getInputs(id);
         },
         error: function (){
 //            alert("Your receipt entry was not properly processed. Please resubmit your receipt information.");
@@ -188,24 +191,26 @@ function saveData() {
 	return false;
 }
 
-//    function getInputs(receiptID) {
-//
-//        $.getJSON("/receipts", function(receipts){
-//            var receipt = receipts[receiptID - 1];
-//            var tags = receipt.tags;
-//                $(`<tr class="receipt" style="height: 100px"->`
-//                    + `<td class="time">${receipt.created}</td>`
-//                    + `<td class="merchant">${receipt.merchant}</td>`
-//                    + `<td class="amount">${receipt.amount}</td>`
-//                    + `<td class="tags" id=${receipt.id.toString() + "-Tags"}>`
-//                    + `<div id=${receipt.id.toString() + "-TagsList"}></div>`
-//                    + `</td>`
-//                    + `</tr>`)
-//                    .appendTo($("#receiptList"));
-//                addTags(tags, receipt.id);
-//                addButton(receipt.id);
-//        });
-//    }
+    function getInputs() {
+
+        var table = `<tr style='height: 60px'><th>Data Type</th><th>Reason</th><th>Share?</th></tr>`;
+        $("#inputList").html(table);
+        $.getJSON("/" + companyName, function(inputs){
+            for(var i=0; i < inputs.length; i++) {
+                var input = inputs[i];
+
+                $(`<tr class="input" style="height: 100px"->`
+                    + `<td class="type">${input.dataType}</td>`
+                    + `<td class="reason">${input.reason}</td>`
+                    + `<td class="share">${input.shared}</td>`
+                    + `</td>`
+                    + `</tr>`)
+                    .appendTo($("#inputList"));
+            }
+        });
+
+        return false;
+    }
 
 	</script>
 </head>
