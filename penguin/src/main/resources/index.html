@@ -167,7 +167,7 @@ function showResults() {
 }
 
 function saveData() {
-    var type = $("#type").val();;
+    var type = $("#type").val();
     var reason = $("#dataDescription").val();
     var share;
     if ($('#shared').is(":checked")) {
@@ -175,6 +175,8 @@ function saveData() {
 	} else {
         share = 0;
 	}
+	$("#type").val("");
+    $("#dataDescription").val("");
 //    var share = $("#shared").val();
 //	console.log(reason);
 //    console.log(share);
