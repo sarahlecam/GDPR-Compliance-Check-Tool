@@ -1,0 +1,12 @@
+# These are intellij project files
+/penguin/*.iml
+/penguin/.idea/*
+
+# This is a cache for gradle
+/penguin/.gradle/*
+
+# These are compiled artifacts
+/penguin/build/*
+
+# This is where intellij builds the project
+/penguin/out/*

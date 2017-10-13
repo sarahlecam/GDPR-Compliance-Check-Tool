@@ -30,7 +30,7 @@ import org.jooq.impl.UpdatableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class DatainfoRecord extends UpdatableRecordImpl<DatainfoRecord> implements Record6<String, Integer, Time, String, String, Boolean> {
 
-	private static final long serialVersionUID = -2056435667;
+	private static final long serialVersionUID = -938861448;
 
 	/**
 	 * Setter for <code>public.datainfo.companyname</code>.
@@ -124,7 +124,7 @@ public class DatainfoRecord extends UpdatableRecordImpl<DatainfoRecord> implemen
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Record1<String> key() {
+	public Record1<Integer> key() {
 		return (Record1) super.key();
 	}
 

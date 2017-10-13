@@ -12,7 +12,7 @@ import java.util.List;
 
 import static java.util.stream.Collectors.toList;
 
-@Path("/")
+@Path("")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class EnterpriseController {
@@ -29,8 +29,9 @@ public class EnterpriseController {
     }
 
     @GET
-    public List<EnterpriseResponse> getDataInfo() {
-        List<DatainfoRecord> dataInfo = enterpriseDao.getAllDataInfo();
+    @Path("/{company}")
+    public List<EnterpriseResponse> getDataInfo(@PathParam("company") String companyName) {
+        List<DatainfoRecord> dataInfo = enterpriseDao.getAllDataInfo(companyName);
         return dataInfo.stream().map(EnterpriseResponse::new).collect(toList());
     }
 }
