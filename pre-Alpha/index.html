@@ -9,6 +9,30 @@
     <script src="scripts/process-form.js"></script>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="scripts/policy-box.css">
+    <script>
+
+        const api = "http://localhost:8080";
+        const companyName = "Comcast";
+
+        $(function() {
+          alert("hi");
+            $.ajax({
+                url: api + "/" + companyName + "/",
+                type: "GET",
+                success: function(dataList) {
+                    for (var i = 0; i < dataList.length -1; i++) {
+                        var dataItem = dataList[i];
+                        alert(dataItem.dataType + dataItem.reason + dataItem.shared);
+                    };
+                }
+            })
+        });
+
+
+
+
+
+    </script>
 </head>
 <body>
 

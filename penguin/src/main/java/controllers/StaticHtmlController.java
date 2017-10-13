@@ -16,4 +16,11 @@ public class StaticHtmlController {
         Resources.getResource("index.html");
         return Resources.toString(Resources.getResource("index.html"), UTF_8);
     }
+
+    @GET
+    @Path("form/")
+    public String getFormPage() throws IOException {
+        Resources.getResource("testForm.html");
+        return Resources.toString(Resources.getResource("testForm.html"), UTF_8);
+    }
 }
