@@ -28,4 +28,11 @@ public class CreateEnterpriseRequest {
 
     public String website;
 
+    public String dopName;
+
+    public String dopContact;
+
+    public String companyType;
+
+
 }

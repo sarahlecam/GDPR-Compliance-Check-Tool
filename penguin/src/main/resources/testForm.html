@@ -46,17 +46,34 @@
         /* Show div */
         function show(dived, input) {
 
+            var sharedString = "This data is being shared with third parties biiiitch.";
+
             // edit inner html according to input field
             var inputID = input.getAttribute('id');
 
             if (inputID == "name") {
-                dived.innerHTML = "Your name is being collected and will be stored in our data base.";
+                if (data[inputID] != null) {
+                    var nameInput = data[inputID];
+                    var sharedAppend = "";
+                    if (nameInput[1]) {sharedAppend = " " + sharedString};
+                    dived.innerHTML = nameInput[0] + sharedAppend; //"Your name is being collected and will be stored in our data base.";
+                }
             } else if (inputID == "mail") {
-                dived.innerHTML = "Your email is being collected and will be stored in our data base.";
+                if (data[inputID] != null) {
+                    var nameInput = data[inputID];
+                    var sharedAppend = "";
+                    if (nameInput[1]) {sharedAppend = " " + sharedString};
+                    dived.innerHTML = nameInput[0] + sharedAppend; //"Your email is being collected and will be stored in our data base.";
+                }
             } else if (inputID == "password") {
-                dived.innerHTML = "Your password is being collected for identification purposes only.";
+                if (data[inputID] != null) {
+                    var nameInput = data[inputID];
+                    var sharedAppend = "";
+                    if (nameInput[1]) {sharedAppend = " " + sharedString};
+                    dived.innerHTML = nameInput[0] + sharedAppend; //"Your password is being collected for identification purposes only.";
+                }
             } else if (inputID == "under_13" || inputID == "over_13") {
-                dived.innerHTML = "Your age range is being collected only to identify your elegibility and will not be stored.";
+                dived.innerHTML = "Your age range is being collected only to identify your eligibility and will not be stored.";
             } else {
                 dived.innerHTML = "This information will be stored and shared with relevant 3rd parties.";
             }
@@ -217,7 +234,8 @@
     <script>
 
         const api = "http://localhost:8080";
-        const companyName = "Comcast";
+        const companyName = "HelpMeDate";
+        var data = {};
 
         $(function() {
             $.ajax({
@@ -226,13 +244,13 @@
                 success: function(dataList) {
                     for (var i = 0; i < dataList.length; i++) {
                         var dataItem = dataList[i];
-                        alert(dataItem.dataType + dataItem.reason + dataItem.shared);
+                        // call function that creates touch overlays for different elements
+//                        alert(dataItem.dataType + dataItem.reason + dataItem.shared);
+                        data[dataItem.dataType] = [dataItem.reason, dataItem.shared];
                     };
                 }
             })
         });
-
-
 
 
 

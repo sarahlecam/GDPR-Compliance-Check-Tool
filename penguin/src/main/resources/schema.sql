@@ -18,6 +18,9 @@ CREATE TABLE datainfo (
   address VARCHAR (255),
   contact VARCHAR (255),
   website VARCHAR (255),
+  dopName VARCHAR (255),
+  dopContact VARCHAR (255),
+  companyType VARCHAR (255),
   PRIMARY KEY (id)
 );
 

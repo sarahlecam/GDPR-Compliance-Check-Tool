@@ -35,7 +35,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Datainfo extends TableImpl<DatainfoRecord> {
 
-	private static final long serialVersionUID = 175553461;
+	private static final long serialVersionUID = 1497621695;
 
 	/**
 	 * The reference instance of <code>public.datainfo</code>
@@ -94,6 +94,21 @@ public class Datainfo extends TableImpl<DatainfoRecord> {
 	 * The column <code>public.datainfo.website</code>.
 	 */
 	public final TableField<DatainfoRecord, String> WEBSITE = createField("website", org.jooq.impl.SQLDataType.VARCHAR.length(255), this, "");
+
+	/**
+	 * The column <code>public.datainfo.dopname</code>.
+	 */
+	public final TableField<DatainfoRecord, String> DOPNAME = createField("dopname", org.jooq.impl.SQLDataType.VARCHAR.length(255), this, "");
+
+	/**
+	 * The column <code>public.datainfo.dopcontact</code>.
+	 */
+	public final TableField<DatainfoRecord, String> DOPCONTACT = createField("dopcontact", org.jooq.impl.SQLDataType.VARCHAR.length(255), this, "");
+
+	/**
+	 * The column <code>public.datainfo.companytype</code>.
+	 */
+	public final TableField<DatainfoRecord, String> COMPANYTYPE = createField("companytype", org.jooq.impl.SQLDataType.VARCHAR.length(255), this, "");
 
 	/**
 	 * Create a <code>public.datainfo</code> table reference

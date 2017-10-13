@@ -19,10 +19,10 @@ public class EnterpriseDao {
         this.dsl = DSL.using(jooqConfig);
     }
 
-    public int insert(String dataType, String reason, Boolean shared, String companyName, String address, String contact, String website) {
+    public int insert(String dataType, String reason, Boolean shared, String companyName, String address, String contact, String website,String dopName,String dopContact, String companyType) {
         DatainfoRecord datainfoRecord = dsl
-                .insertInto(DATAINFO, DATAINFO.DATATYPE, DATAINFO.REASON, DATAINFO.SHARED, DATAINFO.COMPANYNAME, DATAINFO.ADDRESS,DATAINFO.CONTACT,DATAINFO.WEBSITE)
-                .values(dataType,reason,shared,companyName,address,contact,website)
+                .insertInto(DATAINFO, DATAINFO.DATATYPE, DATAINFO.REASON, DATAINFO.SHARED, DATAINFO.COMPANYNAME, DATAINFO.ADDRESS,DATAINFO.CONTACT,DATAINFO.WEBSITE,DATAINFO.DOPNAME,DATAINFO.DOPCONTACT,DATAINFO.COMPANYTYPE)
+                .values(dataType,reason,shared,companyName,address,contact,website,dopName,dopContact,companyType)
                 .returning(RECEIPTS.ID)
                 .fetchOne();
 

@@ -99,6 +99,9 @@ h1 {
 	var address;
 	var contact;
 	var website;
+    var dpoName;
+    var dpoContact;
+    var companyType;
 	
 	$(function(){
         windowed = $("#form");
@@ -115,7 +118,13 @@ function startForm() {
         + `Contact Number: `
         + `<input type="text" id="contact"><br>`
         + `Company Website: `
-        + `<input type="text" id="address"><br>`
+        + `<input type="text" id="website"><br>`
+        + `Company Type: `
+        + `<input type="text" id="companyType"><br>`
+        + `DPO Name: `
+        + `<input type="text" id="dpoName"><br>`
+        + ` DPO Contact: `
+        + `<input type="text" id="dpoContact"><br>`
 		+ `Company Description: <br>`
 		+ `<textarea rows="5" cols="60" id="description"></textarea><br>`
 		+ `<button type="submit">Continue</button>`
@@ -129,6 +138,9 @@ function submitComp() {
 	address = $("#address").val();
 	contact = $("#contact").val();
 	website = $("#website").val();
+    companyType = $("#companyType").val();
+    dpoName = $("#dpoName").val();
+    dpoContact = $("#dpoContact").val();
 //    console.log(companyDescription);
     individualData();
 }
@@ -157,10 +169,10 @@ function individualData() {
         + `</form>`
 		+ `<table style="width:100%" id="inputList">`
         + `</table>`
-		+ `<form action="" onsubmit="return false;">`
+		+ `<form action="" onsubmit="location.replace('/notice/${companyName}'); return false;">`
 //		+ `<input type="text" placeholder="email"> <br>`
 		+ `<button onclick="startForm()">Back</button>`
-		+ `<button type="submit" onclick="">Continue</button>`
+		+ `<button type="submit">Continue</button>`
 		+ `</form>`).appendTo(windowed);
 	getInputs();
 }
@@ -190,7 +202,7 @@ function saveData() {
     $.ajax({
         url: "",
         type: "POST",
-        data: JSON.stringify({"companyName": companyName, "address": address, "contact" : contact,"website" : website, "dataType": type, "reason": reason, "shared": share}),
+        data: JSON.stringify({"companyName": companyName, "address": address, "contact" : contact,"website" : website, "dataType": type, "reason": reason, "shared": share,"dopName": dpoName,"dopContact" : dpoContact,"companyType": companyType}),
         contentType: "application/json",
         dataType: "json",
         success: function (id) {

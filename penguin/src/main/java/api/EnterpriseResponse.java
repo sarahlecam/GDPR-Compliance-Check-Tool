@@ -42,6 +42,15 @@ public class EnterpriseResponse {
     @JsonProperty
     String website;
 
+    @JsonProperty
+    String dopName;
+
+    @JsonProperty
+    String dopContact;
+
+    @JsonProperty
+    String companyType;
+
    public EnterpriseResponse(DatainfoRecord dbRecord) {
         this.dataType = dbRecord.getDatatype();
         this.reason = dbRecord.getReason();
@@ -51,6 +60,10 @@ public class EnterpriseResponse {
         this.address = dbRecord.getAddress();
         this.contact = dbRecord.getContact();
         this.website = dbRecord.getWebsite();
+        this.dopName = dbRecord.getDopname();
+        this.dopContact = dbRecord.getDopcontact();
+        this.companyType = dbRecord.getCompanytype();
+
 
     }
 }
