@@ -28,9 +28,11 @@
 	<style>
 		body {
 		width: 100%;
-		background-color: rgb(196, 226, 242);
+		/*background-color: rgb(196, 226, 242);*/
 		font-family: 'Raleway', sans-serif;
 		color: rgb(45, 43, 43);
+			margin: 0;
+			padding: 0;
 		}
 
 		h1 {
@@ -43,6 +45,7 @@
 			width: 50%;
 			margin: 0 auto;
 			vertical-align: middle;
+			/*clear: both;*/
 			/*background-color: rgb(196, 226, 0);*/
 			/*text-align: center;*/
 		}
@@ -52,13 +55,35 @@
 			border: 1px solid;
 			border-radius: 20px;
 			width: 50%;
-			margin: 0 auto;
+			margin: 20% auto;
 			padding: 20px;
 			font-family: 'Raleway', sans-serif;
 			font-size: 30px;
 			background-color: rgb(196, 226, 242);
 			cursor: pointer;
 		}
+
+		#button {
+			display: inline-block;
+			border: 1px solid;
+			border-radius: 20px;
+			width: 25%;
+			height: 40px;
+			margin: 0 10px;
+			padding: 15px;
+			font-family: 'Raleway', sans-serif;
+			font-size: 20px;
+			background-color: white;
+			cursor: pointer;
+			text-align: center;
+			vertical-align: middle;
+			text-decoration: none;
+		}
+
+		.form {
+			/*margin-top: 100px !important;*/
+		}
+
 		#privacyField {
 			/*display: none;*/
 			clear: both;
@@ -91,23 +116,58 @@
 			text-align: center;
 		}
 
+		.Menu {
+			text-align: center;
+			/*background-color: #800000;*/
+			font-family: 'Archivo Narrow', sans-serif;
+			padding: 1%;
+			color: rgb(45, 43, 43) !important;
+		}
+
+		.Menu ul {
+			height: auto;
+			padding: 4%;
+			margin: -1%;
+			list-style-type: none;
+			color: rgb(45, 43, 43) !important;
+		}
+		.Menu li {
+			display: inline;
+			padding: 8px 15px 8px 15px;
+			color: rgb(45, 43, 43) !important;
+		}
+
+		.Menu a {
+			text-decoration: none;
+			width: 60px;
+			padding: 8px 0px 8px 0px;
+			font-size: 25px;
+			color: rgb(45, 43, 43) !important;
+		}
+
 		.topRow {
-			position:fixed;
+			/*position:fixed;*/
 			width:100%;
-			z-index:1
+			background-color: rgb(196, 226, 242);
+			margin-top: -30px;
+			/*z-index:1;*/
 		}
 
-		.topRowCol {
-			float: left;
-			width: 24%;
+		input {
+			border-radius: 5px;
+		}
 
-		}
-		.bgimg {
-			background-position: center;
-			background-size: cover;
-			background-image: url("privacy.jpeg");
-			min-height: 75%;
-		}
+		/*.topRowCol {*/
+			/*float: left;*/
+			/*width: 34%;*/
+		/*}*/
+
+		/*.bgimg {*/
+			/*background-position: center;*/
+			/*background-size: cover;*/
+			/*background-image: url("privacy.jpeg");*/
+			/*min-height: 75%;*/
+		/*}*/
 
 	</style>
 	<script>
@@ -188,7 +248,7 @@ function individualData() {
         + `</form>`
 		+ `<table style="width:100%" id="inputList">`
         + `</table>`
-		+ `<form action="" onsubmit="location.replace('/notice/${companyName}'); return false;">`
+		+ `<form action="" onsubmit="lastPage(); return false;">`
 //		+ `<input type="text" placeholder="email"> <br>`
 		+ `<button onclick="startForm()">Back</button>`
 		+ `<button type="submit">Continue</button>`
@@ -258,27 +318,35 @@ function saveData() {
         return false;
     }
 
+    function lastPage() {
+        windowed.empty();
+        $(`<h2>Tools</h2> <br>`
+			+ `<div>`
+            + `<a id="button" href="http://localhost:8080/notice/${companyName}" target="_blank">Privacy Notice</a>`
+            + `<a id="button" href="http://localhost:8080/policy" target="_blank">Privacy Policy</a>`
+            + `<a id="button" href="http://localhost:8080/form" target="_blank">Form</a>`
+			+ `</div>`
+		).appendTo(windowed);
+        getInputs();
+	}
+
 	</script>
 </head>
 
 <body>
 <!-- <div class="container-fluid"> -->
 <div class = "topRow">
-	<div class="topRowCol">
-		<h1>PolicyMe</h1>
-	</div>
-	<div class="topRowCol">What we do</div>
-	<!--<div class="topRowCol" id="form">-->
-	<div class="topRowCol" id = form>
-		<button id="start" onclick="startForm(); return false;">Start</button>
-	</div>
-	<div class="topRowCol">Contact Us</div>
+	<h1>PolicyMe</h1>
+	<ul class="Menu">
+		<li><a href="">What we do</a></li>
+		<li><a href="">Sign Up</a></li>
+		<li><a href="">Contact Us</a></li>
+	</ul>
+</div>
+<div id="form">
+	<button id="start" onclick="startForm(); return false;">Start</button>
 </div>
 
-
-<!--<header class="bgimg">-->
-<!--Hi-->
-<!--</header>-->
 <div id="privacyImage">
 	<img src="https://article.images.consumerreports.org/prod/content/dam/cro/magazine-articles/2016/November/CR-Magazine-Hero-Privacy-floor-grey-09-16" height="674" width="1979"/>
 
