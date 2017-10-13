@@ -26,70 +26,89 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>PolicyMe</title>
 	<style>
-	body {
-	width: 100%;
-	background-color: rgb(196, 226, 242);
-	font-family: 'Raleway', sans-serif;
-	color: rgb(45, 43, 43);
-}
-
-h1 {
-	font-family: 'Pacifico', cursive;
-	font-size: 80px;
-	text-align: center;
-}
-
-#form {
-	width: 50%;
-	margin: 0 auto;
-	vertical-align: middle;
-	/*background-color: rgb(196, 226, 0);*/
-	/*text-align: center;*/
-}
-
-#start {
-	display: block;
-	border: 1px solid;
-	border-radius: 20px;
-	width: 50%;
-	margin: 0 auto;
-	padding: 20px;
-	font-family: 'Raleway', sans-serif;
-	font-size: 60px;
-	background-color: rgb(196, 226, 242);
-	cursor: pointer;
-}
-	#privacyField {
-		/*display: none;*/
-		clear: both;
-		margin: 0 auto;
-		margin-bottom: 30px;
-		border: 1px solid ;
-		/*background-color: #bad3fc;*/
-		padding: 10px;
-		border-radius: 10px;
-		/*width: 0%;*/
-	}
-
-	#inputList {
-		/*margin-top: 60px !important;*/
+		body {
+		width: 100%;
+		background-color: rgb(196, 226, 242);
 		font-family: 'Raleway', sans-serif;
-		/*border: 1px solid green;*/
-		clear: both;
-	}
+		color: rgb(45, 43, 43);
+		}
 
-	th {
-		font-weight: 900;
-		font-size: 20px;
-		border-bottom: 1px dashed black;
-		/*padding : 5px;*/
-	}
+		h1 {
+			font-family: 'Pacifico', cursive;
+			font-size: 40px;
+			text-align: center;
+		}
 
-	th, td {
-		width : 25%;
-		vertical-align: center;
-		text-align: center;
-	}
+		#form {
+			width: 50%;
+			margin: 0 auto;
+			vertical-align: middle;
+			/*background-color: rgb(196, 226, 0);*/
+			/*text-align: center;*/
+		}
+
+		#start {
+			display: block;
+			border: 1px solid;
+			border-radius: 20px;
+			width: 50%;
+			margin: 0 auto;
+			padding: 20px;
+			font-family: 'Raleway', sans-serif;
+			font-size: 30px;
+			background-color: rgb(196, 226, 242);
+			cursor: pointer;
+		}
+		#privacyField {
+			/*display: none;*/
+			clear: both;
+			margin: 0 auto;
+			margin-bottom: 30px;
+			border: 1px solid ;
+			/*background-color: #bad3fc;*/
+			padding: 10px;
+			border-radius: 10px;
+			/*width: 0%;*/
+		}
+
+		#inputList {
+			/*margin-top: 60px !important;*/
+			font-family: 'Raleway', sans-serif;
+			/*border: 1px solid green;*/
+			clear: both;
+		}
+
+		th {
+			font-weight: 900;
+			font-size: 20px;
+			border-bottom: 1px dashed black;
+			/*padding : 5px;*/
+		}
+
+		th, td {
+			width : 25%;
+			vertical-align: center;
+			text-align: center;
+		}
+
+		.topRow {
+			position:fixed;
+			width:100%;
+			z-index:1
+		}
+
+		.topRowCol {
+			float: left;
+			width: 24%;
+
+		}
+		.bgimg {
+			background-position: center;
+			background-size: cover;
+			background-image: url("privacy.jpeg");
+			min-height: 75%;
+		}
+
 	</style>
 	<script>
 
@@ -224,13 +243,28 @@ function saveData() {
 
 <body>
 <!-- <div class="container-fluid"> -->
-	<h1>PolicyMe</h1>
-
-	<div id="form">
+<div class = "topRow">
+	<div class="topRowCol">
+		<h1>PolicyMe</h1>
+	</div>
+	<div class="topRowCol">What we do</div>
+	<!--<div class="topRowCol" id="form">-->
+	<div class="topRowCol">
 		<button id="start" onclick="startForm(); return false;">Start</button>
 	</div>
+	<div class="topRowCol">Contact Us</div>
+</div>
 
-	<div id="footer"> 
+
+<!--<header class="bgimg">-->
+<!--Hi-->
+<!--</header>-->
+<div>
+	<img src="privacy.jpeg" width="100%">
+</div>
+
+
+<div id="footer">
 
 	</div>
 
