@@ -18,7 +18,7 @@ public class StaticHtmlController {
     }
 
     @GET
-    @Path("form/")
+    @Path("/form/")
     public String getFormPage() throws IOException {
         Resources.getResource("testForm.html");
         return Resources.toString(Resources.getResource("testForm.html"), UTF_8);
@@ -29,5 +29,12 @@ public class StaticHtmlController {
     public String getNotice(@PathParam("companyName") String companyName) throws IOException {
         Resources.getResource("notice.html");
         return Resources.toString(Resources.getResource("notice.html"), UTF_8);
+    }
+
+    @GET
+    @Path("/policy/")
+    public String getPolicy() throws IOException {
+        Resources.getResource("policy.html");
+        return Resources.toString(Resources.getResource("policy.html"), UTF_8);
     }
 }
