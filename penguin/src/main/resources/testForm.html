@@ -225,7 +225,7 @@
                 url: api + "/" + companyName + "/",
                 type: "GET",
                 success: function(dataList) {
-                    for (var i = 0; i < dataList.length -1; i++) {
+                    for (var i = 0; i < dataList.length; i++) {
                         var dataItem = dataList[i];
                         alert(dataItem.dataType + dataItem.reason + dataItem.shared);
                     };
