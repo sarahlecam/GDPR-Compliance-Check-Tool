@@ -31,8 +31,8 @@ public class EnterpriseDao {
         return datainfoRecord.getId();
     }
 
-    public List<DatainfoRecord> getAllDataInfo() {
-        List<DatainfoRecord> dataInfoResponseList = dsl.selectFrom(DATAINFO).fetch();
+    public List<DatainfoRecord> getAllDataInfo(String companyName) {
+        List<DatainfoRecord> dataInfoResponseList = dsl.selectFrom(DATAINFO).where(DATAINFO.COMPANYNAME.eq(companyName)).fetch();
 
         if (dataInfoResponseList == null || dataInfoResponseList.size() < 1) {
             System.out.println("did not find any receipts");

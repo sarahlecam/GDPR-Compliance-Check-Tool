@@ -15,7 +15,7 @@ CREATE TABLE datainfo (
   dataType VARCHAR(255),
   reason VARCHAR(1024),
   shared BIT,
-  PRIMARY KEY (companyName)
+  PRIMARY KEY (id)
 );
 
 CREATE TABLE tags (

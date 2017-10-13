@@ -35,7 +35,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Datainfo extends TableImpl<DatainfoRecord> {
 
-	private static final long serialVersionUID = 285362537;
+	private static final long serialVersionUID = -192614518;
 
 	/**
 	 * The reference instance of <code>public.datainfo</code>
@@ -53,7 +53,7 @@ public class Datainfo extends TableImpl<DatainfoRecord> {
 	/**
 	 * The column <code>public.datainfo.companyname</code>.
 	 */
-	public final TableField<DatainfoRecord, String> COMPANYNAME = createField("companyname", org.jooq.impl.SQLDataType.VARCHAR.length(255).nullable(false), this, "");
+	public final TableField<DatainfoRecord, String> COMPANYNAME = createField("companyname", org.jooq.impl.SQLDataType.VARCHAR.length(255), this, "");
 
 	/**
 	 * The column <code>public.datainfo.id</code>.

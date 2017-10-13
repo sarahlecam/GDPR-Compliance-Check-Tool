@@ -64,6 +64,6 @@ public class Keys {
 
 	private static class UniqueKeys0 extends AbstractKeys {
 		public static final UniqueKey<ReceiptsRecord> CONSTRAINT_F = createUniqueKey(Receipts.RECEIPTS, Receipts.RECEIPTS.ID);
-		public static final UniqueKey<DatainfoRecord> CONSTRAINT_9 = createUniqueKey(Datainfo.DATAINFO, Datainfo.DATAINFO.COMPANYNAME);
+		public static final UniqueKey<DatainfoRecord> CONSTRAINT_9 = createUniqueKey(Datainfo.DATAINFO, Datainfo.DATAINFO.ID);
 	}
 }

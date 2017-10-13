@@ -1,6 +1,4 @@
 import controllers.*;
-import dao.ReceiptDao;
-import dao.TagsDao;
 import dao.EnterpriseDao;
 import io.dropwizard.Application;
 import io.dropwizard.Configuration;
@@ -36,18 +34,12 @@ public class SimpleApplication extends Application<Configuration> {
     public void run(Configuration cfg, Environment env) {
         // Create any global resources you need here
         org.jooq.Configuration jooqConfig = setupJooq();
-        ReceiptDao receiptDao = new ReceiptDao(jooqConfig);
-        TagsDao tagsDao = new TagsDao(jooqConfig);
         EnterpriseDao enterpriseDao = new EnterpriseDao(jooqConfig);
 
 
         // Register all Controllers below.  Don't forget
         // you need class and method @Path annotations!
         env.jersey().register(new StaticHtmlController());
-        env.jersey().register(new ReceiptController(receiptDao));
-        env.jersey().register(new TagsController(tagsDao));
-        env.jersey().register(new NetidController());
-        env.jersey().register(new ReceiptImageController());
         env.jersey().register(new EnterpriseController(enterpriseDao));
     }
 }

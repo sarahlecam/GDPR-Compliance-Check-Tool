@@ -4,7 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/penguin.iml" filepath="$PROJECT_DIR$/penguin.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/penguin_main.iml" filepath="$PROJECT_DIR$/.idea/modules/penguin_main.iml" group="penguin" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/penguin_test.iml" filepath="$PROJECT_DIR$/.idea/modules/penguin_test.iml" group="penguin" />
     </modules>
   </component>
 </project>
