@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.334s</div>
+<div class="counter">0.246s</div>
 <p>duration</p>
 </div>
 </td>
@@ -79,17 +79,17 @@
 </thead>
 <tr>
 <td class="success">testMissingAmount</td>
-<td>0.016s</td>
+<td>0.010s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">testMissingMerchant</td>
-<td>0.064s</td>
+<td>0.055s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">testValid</td>
-<td>0.254s</td>
+<td>0.181s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -97,38 +97,38 @@
 <div id="tab1" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>22:24:36.727 [Test worker] DEBUG org.jboss.logging - Logging Provider: org.jboss.logging.Slf4jLoggerProvider
-22:24:36.740 [Test worker] INFO org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 5.4.1.Final
-22:24:36.902 [Test worker] DEBUG org.hibernate.validator.internal.engine.resolver.DefaultTraversableResolver - Cannot find javax.persistence.Persistence on classpath. Assuming non JPA 2 environment. All properties will per default be traversable.
-22:24:36.925 [Test worker] DEBUG org.hibernate.validator.internal.engine.ConfigurationImpl - Setting custom ParameterNameProvider of type io.dropwizard.jersey.validation.JerseyParameterNameProvider
-22:24:36.930 [Test worker] DEBUG org.hibernate.validator.internal.xml.ValidationXmlParser - Trying to load META-INF/validation.xml for XML based Validator configuration.
-22:24:36.935 [Test worker] DEBUG org.hibernate.validator.internal.xml.ResourceLoaderHelper - Trying to load META-INF/validation.xml via TCCL
-22:24:36.941 [Test worker] DEBUG org.hibernate.validator.internal.xml.ResourceLoaderHelper - Trying to load META-INF/validation.xml via Hibernate Validator's class loader
-22:24:36.944 [Test worker] DEBUG org.hibernate.validator.internal.xml.ValidationXmlParser - No META-INF/validation.xml found. Using annotation based configuration only.
-22:24:37.423 [Test worker] DEBUG org.hibernate.validator.internal.metadata.descriptor.ConstraintDescriptorImpl - Adding composing constraint: ConstraintDescriptorImpl{annotation=javax.validation.constraints.NotNull, payloads=[], hasComposingConstraints=true, isReportAsSingleInvalidConstraint=false, elementType=FIELD, definedOn=DEFINED_LOCALLY, groups=[interface javax.validation.groups.Default], attributes={message={javax.validation.constraints.NotNull.message}, groups=[Ljava.lang.Class;@42e6b874, payload=[Ljava.lang.Class;@6411743f}, constraintType=GENERIC}.
-22:24:37.429 [Test worker] DEBUG org.hibernate.validator.internal.metadata.descriptor.ConstraintDescriptorImpl - Adding composing constraint: ConstraintDescriptorImpl{annotation=javax.validation.constraints.Size, payloads=[], hasComposingConstraints=true, isReportAsSingleInvalidConstraint=false, elementType=FIELD, definedOn=DEFINED_LOCALLY, groups=[interface javax.validation.groups.Default], attributes={groups=[Ljava.lang.Class;@22e5e372, min=1, message={javax.validation.constraints.Size.message}, max=2147483647, payload=[Ljava.lang.Class;@b3e32ac}, constraintType=GENERIC}.
-22:24:37.591 [Test worker] DEBUG org.hibernate.validator.internal.engine.resolver.DefaultTraversableResolver - Cannot find javax.persistence.Persistence on classpath. Assuming non JPA 2 environment. All properties will per default be traversable.
-22:24:37.594 [Test worker] DEBUG org.hibernate.validator.internal.engine.ConfigurationImpl - Setting custom ParameterNameProvider of type io.dropwizard.jersey.validation.JerseyParameterNameProvider
-22:24:37.595 [Test worker] DEBUG org.hibernate.validator.internal.xml.ValidationXmlParser - Trying to load META-INF/validation.xml for XML based Validator configuration.
-22:24:37.602 [Test worker] DEBUG org.hibernate.validator.internal.xml.ResourceLoaderHelper - Trying to load META-INF/validation.xml via TCCL
-22:24:37.604 [Test worker] DEBUG org.hibernate.validator.internal.xml.ResourceLoaderHelper - Trying to load META-INF/validation.xml via Hibernate Validator's class loader
-22:24:37.609 [Test worker] DEBUG org.hibernate.validator.internal.xml.ValidationXmlParser - No META-INF/validation.xml found. Using annotation based configuration only.
-22:24:37.617 [Test worker] DEBUG org.hibernate.validator.internal.metadata.descriptor.ConstraintDescriptorImpl - Adding composing constraint: ConstraintDescriptorImpl{annotation=javax.validation.constraints.NotNull, payloads=[], hasComposingConstraints=true, isReportAsSingleInvalidConstraint=false, elementType=FIELD, definedOn=DEFINED_LOCALLY, groups=[interface javax.validation.groups.Default], attributes={message={javax.validation.constraints.NotNull.message}, groups=[Ljava.lang.Class;@278f0557, payload=[Ljava.lang.Class;@79e5a83e}, constraintType=GENERIC}.
-22:24:37.619 [Test worker] DEBUG org.hibernate.validator.internal.metadata.descriptor.ConstraintDescriptorImpl - Adding composing constraint: ConstraintDescriptorImpl{annotation=javax.validation.constraints.Size, payloads=[], hasComposingConstraints=true, isReportAsSingleInvalidConstraint=false, elementType=FIELD, definedOn=DEFINED_LOCALLY, groups=[interface javax.validation.groups.Default], attributes={groups=[Ljava.lang.Class;@8145166, min=1, message={javax.validation.constraints.Size.message}, max=2147483647, payload=[Ljava.lang.Class;@2aa31504}, constraintType=GENERIC}.
-22:24:37.634 [Test worker] DEBUG org.hibernate.validator.internal.engine.resolver.DefaultTraversableResolver - Cannot find javax.persistence.Persistence on classpath. Assuming non JPA 2 environment. All properties will per default be traversable.
-22:24:37.636 [Test worker] DEBUG org.hibernate.validator.internal.engine.ConfigurationImpl - Setting custom ParameterNameProvider of type io.dropwizard.jersey.validation.JerseyParameterNameProvider
-22:24:37.636 [Test worker] DEBUG org.hibernate.validator.internal.xml.ValidationXmlParser - Trying to load META-INF/validation.xml for XML based Validator configuration.
-22:24:37.637 [Test worker] DEBUG org.hibernate.validator.internal.xml.ResourceLoaderHelper - Trying to load META-INF/validation.xml via TCCL
-22:24:37.638 [Test worker] DEBUG org.hibernate.validator.internal.xml.ResourceLoaderHelper - Trying to load META-INF/validation.xml via Hibernate Validator's class loader
-22:24:37.640 [Test worker] DEBUG org.hibernate.validator.internal.xml.ValidationXmlParser - No META-INF/validation.xml found. Using annotation based configuration only.
-22:24:37.647 [Test worker] DEBUG org.hibernate.validator.internal.metadata.descriptor.ConstraintDescriptorImpl - Adding composing constraint: ConstraintDescriptorImpl{annotation=javax.validation.constraints.NotNull, payloads=[], hasComposingConstraints=true, isReportAsSingleInvalidConstraint=false, elementType=FIELD, definedOn=DEFINED_LOCALLY, groups=[interface javax.validation.groups.Default], attributes={message={javax.validation.constraints.NotNull.message}, groups=[Ljava.lang.Class;@33ede2d3, payload=[Ljava.lang.Class;@fa5b99}, constraintType=GENERIC}.
-22:24:37.649 [Test worker] DEBUG org.hibernate.validator.internal.metadata.descriptor.ConstraintDescriptorImpl - Adding composing constraint: ConstraintDescriptorImpl{annotation=javax.validation.constraints.Size, payloads=[], hasComposingConstraints=true, isReportAsSingleInvalidConstraint=false, elementType=FIELD, definedOn=DEFINED_LOCALLY, groups=[interface javax.validation.groups.Default], attributes={groups=[Ljava.lang.Class;@47a2c7fa, min=1, message={javax.validation.constraints.Size.message}, max=2147483647, payload=[Ljava.lang.Class;@1b854ea7}, constraintType=GENERIC}.
-22:24:37.665 [Test worker] DEBUG org.hibernate.validator.resourceloading.PlatformResourceBundleLocator - ValidationMessages not found.
-22:24:37.669 [Test worker] DEBUG org.hibernate.validator.resourceloading.PlatformResourceBundleLocator - ContributorValidationMessages not found.
-22:24:37.674 [Test worker] DEBUG org.hibernate.validator.resourceloading.PlatformResourceBundleLocator - org.hibernate.validator.ValidationMessages found.
-22:24:37.694 [Test worker] DEBUG org.hibernate.validator.resourceloading.PlatformResourceBundleLocator - ValidationMessages not found.
-22:24:37.694 [Test worker] DEBUG org.hibernate.validator.resourceloading.PlatformResourceBundleLocator - ContributorValidationMessages not found.
-22:24:37.695 [Test worker] DEBUG org.hibernate.validator.resourceloading.PlatformResourceBundleLocator - org.hibernate.validator.ValidationMessages found.
+<pre>22:27:53.895 [Test worker] DEBUG org.jboss.logging - Logging Provider: org.jboss.logging.Slf4jLoggerProvider
+22:27:53.901 [Test worker] INFO org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 5.4.1.Final
+22:27:53.931 [Test worker] DEBUG org.hibernate.validator.internal.engine.resolver.DefaultTraversableResolver - Cannot find javax.persistence.Persistence on classpath. Assuming non JPA 2 environment. All properties will per default be traversable.
+22:27:53.938 [Test worker] DEBUG org.hibernate.validator.internal.engine.ConfigurationImpl - Setting custom ParameterNameProvider of type io.dropwizard.jersey.validation.JerseyParameterNameProvider
+22:27:53.942 [Test worker] DEBUG org.hibernate.validator.internal.xml.ValidationXmlParser - Trying to load META-INF/validation.xml for XML based Validator configuration.
+22:27:53.944 [Test worker] DEBUG org.hibernate.validator.internal.xml.ResourceLoaderHelper - Trying to load META-INF/validation.xml via TCCL
+22:27:53.946 [Test worker] DEBUG org.hibernate.validator.internal.xml.ResourceLoaderHelper - Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+22:27:53.947 [Test worker] DEBUG org.hibernate.validator.internal.xml.ValidationXmlParser - No META-INF/validation.xml found. Using annotation based configuration only.
+22:27:54.104 [Test worker] DEBUG org.hibernate.validator.internal.metadata.descriptor.ConstraintDescriptorImpl - Adding composing constraint: ConstraintDescriptorImpl{annotation=javax.validation.constraints.NotNull, payloads=[], hasComposingConstraints=true, isReportAsSingleInvalidConstraint=false, elementType=FIELD, definedOn=DEFINED_LOCALLY, groups=[interface javax.validation.groups.Default], attributes={message={javax.validation.constraints.NotNull.message}, groups=[Ljava.lang.Class;@6c50e5bd, payload=[Ljava.lang.Class;@1346fc67}, constraintType=GENERIC}.
+22:27:54.106 [Test worker] DEBUG org.hibernate.validator.internal.metadata.descriptor.ConstraintDescriptorImpl - Adding composing constraint: ConstraintDescriptorImpl{annotation=javax.validation.constraints.Size, payloads=[], hasComposingConstraints=true, isReportAsSingleInvalidConstraint=false, elementType=FIELD, definedOn=DEFINED_LOCALLY, groups=[interface javax.validation.groups.Default], attributes={groups=[Ljava.lang.Class;@1c8f6930, min=1, message={javax.validation.constraints.Size.message}, max=2147483647, payload=[Ljava.lang.Class;@660562aa}, constraintType=GENERIC}.
+22:27:54.243 [Test worker] DEBUG org.hibernate.validator.internal.engine.resolver.DefaultTraversableResolver - Cannot find javax.persistence.Persistence on classpath. Assuming non JPA 2 environment. All properties will per default be traversable.
+22:27:54.243 [Test worker] DEBUG org.hibernate.validator.internal.engine.ConfigurationImpl - Setting custom ParameterNameProvider of type io.dropwizard.jersey.validation.JerseyParameterNameProvider
+22:27:54.244 [Test worker] DEBUG org.hibernate.validator.internal.xml.ValidationXmlParser - Trying to load META-INF/validation.xml for XML based Validator configuration.
+22:27:54.244 [Test worker] DEBUG org.hibernate.validator.internal.xml.ResourceLoaderHelper - Trying to load META-INF/validation.xml via TCCL
+22:27:54.245 [Test worker] DEBUG org.hibernate.validator.internal.xml.ResourceLoaderHelper - Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+22:27:54.247 [Test worker] DEBUG org.hibernate.validator.internal.xml.ValidationXmlParser - No META-INF/validation.xml found. Using annotation based configuration only.
+22:27:54.253 [Test worker] DEBUG org.hibernate.validator.internal.metadata.descriptor.ConstraintDescriptorImpl - Adding composing constraint: ConstraintDescriptorImpl{annotation=javax.validation.constraints.NotNull, payloads=[], hasComposingConstraints=true, isReportAsSingleInvalidConstraint=false, elementType=FIELD, definedOn=DEFINED_LOCALLY, groups=[interface javax.validation.groups.Default], attributes={message={javax.validation.constraints.NotNull.message}, groups=[Ljava.lang.Class;@21c0a7d, payload=[Ljava.lang.Class;@5fd34909}, constraintType=GENERIC}.
+22:27:54.254 [Test worker] DEBUG org.hibernate.validator.internal.metadata.descriptor.ConstraintDescriptorImpl - Adding composing constraint: ConstraintDescriptorImpl{annotation=javax.validation.constraints.Size, payloads=[], hasComposingConstraints=true, isReportAsSingleInvalidConstraint=false, elementType=FIELD, definedOn=DEFINED_LOCALLY, groups=[interface javax.validation.groups.Default], attributes={groups=[Ljava.lang.Class;@48082aba, min=1, message={javax.validation.constraints.Size.message}, max=2147483647, payload=[Ljava.lang.Class;@5f8b8ca2}, constraintType=GENERIC}.
+22:27:54.264 [Test worker] DEBUG org.hibernate.validator.internal.engine.resolver.DefaultTraversableResolver - Cannot find javax.persistence.Persistence on classpath. Assuming non JPA 2 environment. All properties will per default be traversable.
+22:27:54.265 [Test worker] DEBUG org.hibernate.validator.internal.engine.ConfigurationImpl - Setting custom ParameterNameProvider of type io.dropwizard.jersey.validation.JerseyParameterNameProvider
+22:27:54.265 [Test worker] DEBUG org.hibernate.validator.internal.xml.ValidationXmlParser - Trying to load META-INF/validation.xml for XML based Validator configuration.
+22:27:54.266 [Test worker] DEBUG org.hibernate.validator.internal.xml.ResourceLoaderHelper - Trying to load META-INF/validation.xml via TCCL
+22:27:54.267 [Test worker] DEBUG org.hibernate.validator.internal.xml.ResourceLoaderHelper - Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+22:27:54.268 [Test worker] DEBUG org.hibernate.validator.internal.xml.ValidationXmlParser - No META-INF/validation.xml found. Using annotation based configuration only.
+22:27:54.279 [Test worker] DEBUG org.hibernate.validator.internal.metadata.descriptor.ConstraintDescriptorImpl - Adding composing constraint: ConstraintDescriptorImpl{annotation=javax.validation.constraints.NotNull, payloads=[], hasComposingConstraints=true, isReportAsSingleInvalidConstraint=false, elementType=FIELD, definedOn=DEFINED_LOCALLY, groups=[interface javax.validation.groups.Default], attributes={message={javax.validation.constraints.NotNull.message}, groups=[Ljava.lang.Class;@76a4ba90, payload=[Ljava.lang.Class;@651472dd}, constraintType=GENERIC}.
+22:27:54.283 [Test worker] DEBUG org.hibernate.validator.internal.metadata.descriptor.ConstraintDescriptorImpl - Adding composing constraint: ConstraintDescriptorImpl{annotation=javax.validation.constraints.Size, payloads=[], hasComposingConstraints=true, isReportAsSingleInvalidConstraint=false, elementType=FIELD, definedOn=DEFINED_LOCALLY, groups=[interface javax.validation.groups.Default], attributes={groups=[Ljava.lang.Class;@5e346faf, min=1, message={javax.validation.constraints.Size.message}, max=2147483647, payload=[Ljava.lang.Class;@d973ec3}, constraintType=GENERIC}.
+22:27:54.297 [Test worker] DEBUG org.hibernate.validator.resourceloading.PlatformResourceBundleLocator - ValidationMessages not found.
+22:27:54.301 [Test worker] DEBUG org.hibernate.validator.resourceloading.PlatformResourceBundleLocator - ContributorValidationMessages not found.
+22:27:54.306 [Test worker] DEBUG org.hibernate.validator.resourceloading.PlatformResourceBundleLocator - org.hibernate.validator.ValidationMessages found.
+22:27:54.320 [Test worker] DEBUG org.hibernate.validator.resourceloading.PlatformResourceBundleLocator - ValidationMessages not found.
+22:27:54.321 [Test worker] DEBUG org.hibernate.validator.resourceloading.PlatformResourceBundleLocator - ContributorValidationMessages not found.
+22:27:54.321 [Test worker] DEBUG org.hibernate.validator.resourceloading.PlatformResourceBundleLocator - org.hibernate.validator.ValidationMessages found.
 </pre>
 </span>
 </div>
@@ -140,7 +140,7 @@
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 4.1</a> at Oct 12, 2017 10:24:38 PM</p>
+<a href="http://www.gradle.org">Gradle 4.1</a> at Oct 12, 2017 10:27:55 PM</p>
 </div>
 </div>
 </body>
