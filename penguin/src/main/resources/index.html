@@ -2,7 +2,7 @@
 <html>
 
 <head>
-	<link rel="stylesheet" href="CSS/style.css"/>
+	<!-- <link rel="stylesheet" href="CSS/style.css"/> -->
 	<script data-require="jquery@*" data-semver="3.1.1" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
 	<!-- TODO: Fix -->
@@ -25,6 +25,97 @@
 	<meta charset="utf-8"> 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>PolicyMe</title>
+	<style>
+	body {
+	width: 100%;
+	background-color: rgb(196, 226, 242);
+	font-family: 'Raleway', sans-serif;
+	color: rgb(45, 43, 43);
+}
+
+h1 {
+	font-family: 'Pacifico', cursive;
+	font-size: 80px;
+	text-align: center;
+}
+
+#form {
+	width: 50%;
+	margin: 0 auto;
+	vertical-align: middle;
+	/*background-color: rgb(196, 226, 0);*/
+	/*text-align: center;*/
+}
+
+#start {
+	display: block;
+	border: 1px solid;
+	border-radius: 20px;
+	width: 50%;
+	margin: 0 auto;
+	padding: 20px;
+	font-family: 'Raleway', sans-serif;
+	font-size: 60px;
+	background-color: rgb(196, 226, 242);
+	cursor: pointer;
+}
+	</style>
+	<script>
+	$(function(){
+	windowed = $("#form");
+})
+
+var companyName;
+
+function startForm() {
+	windowed.empty();
+	$(`<form action="" onsubmit="submitComp(); return false;">`
+		+ `<h2>Company Information</h2> <br>`
+		+ `Company Name: `
+		+ `<input type="text" id="companyName"><br>`
+		+ `Company Description: <br>`
+		+ `<textarea rows="5" cols="60"></textarea><br>`
+		+ `<button type="submit">Continue</button>`
+		+ `</form>`).appendTo(windowed);
+}
+
+function submitComp() {
+	// companyName = $()
+	DOPInfo();
+}
+
+function DOPInfo() {
+	windowed.empty();
+	$(`<form action="" onsubmit="return false;">`
+		+ `DOP Info: <br>`
+		+ `DPOs Name: `
+		+ `<input type="text" id="companyName"><br>`
+		+ `DPOs Contact Info: `
+		+ `<input type="text" id="companyName"><br>`
+		+ `<button onclick="startForm()">Back</button>`
+		+ `<button onclick="individualData()">Continue</button>`
+		+ `</form>`).appendTo(windowed);
+}
+
+function individualData() {
+	windowed.empty();
+	$(`<form action="" onsubmit="return false;">`
+		+ `Collected Individual User Data: <br>`
+		+ `<input type="checkbox" value="email"> Email<br>`
+		+ `<input type="checkbox" value="name"> Name<br>`
+		+ `<input type="checkbox" value="address"> Address<br>`
+		+ `<button onclick="DOPInfo()">Back</button>`
+		+ `<button onclick="showResults()">Continue</button>`
+		+ `</form>`).appendTo(windowed);
+}
+
+function showResults() {
+	windowed.empty();
+
+	// $(`Company Name:` +)
+
+}
+	</script>
 </head>
 
 <body>

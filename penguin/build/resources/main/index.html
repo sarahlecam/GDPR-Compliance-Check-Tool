@@ -2,271 +2,136 @@
 <html>
 
 <head>
-    <script data-require="jquery@*" data-semver="3.1.1" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <style>
-        body {
-            text-align: center;
-        }
+	<!-- <link rel="stylesheet" href="CSS/style.css"/> -->
+	<script data-require="jquery@*" data-semver="3.1.1" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
-        video {
-            width: 550px;
-            height: 450px;
-            border: 1px solid black;
-        }
-
-        #vidwrap {
-            margin: 20px 0;
-        }
-
-        #start, #snapshot {
-            height: 3em;
-        }
-
-        #container {border: 1px solid brown;}
-        H1 {float: left;}
-
-        .button{
-            background-color:#55A;
-            border: 1px solid #229;
-            width: 100px;
-            float: right;
-            font-size: 2em;
-            color: white;
-            text-align: center;
-        }
-
-        #receiptList {
-            border: 1px solid green;
-            clear: both;
-        }
-
-        .receipt {
-            background-color: #eee;
-            margin-bottom: 5px;
-        }
-
-    </style>
-    <script>
-        let imageCapture;
-        let track;
-
-        function attachMediaStream(mediaStream) {
-            $('video')[0].srcObject = mediaStream;
-
-            // Saving the track allows us to capture a photo
-            track = mediaStream.getVideoTracks()[0];
-            imageCapture = new ImageCapture(track);
-        }
-
-        function startVideo() {
-            navigator.mediaDevices.getUserMedia({video: {facingMode: {exact: "environment"}}})
-                .then(attachMediaStream)
-                .catch(error => {
-                    navigator.mediaDevices.getUserMedia({video: true})
-                        .then(attachMediaStream)
-                        .catch(error => {
-                            console.log('you are fooked');
-                        })
-                })
-        }
-
-        function takeSnapshot() {
-            // create a CANVAS element that is same size as the image
-            show_ncon();
-            imageCapture.grabFrame()
-                .then(img => {
-                    const canvas = document.createElement('canvas');
-                    canvas.width = img.width;
-                    canvas.height = img.height;
-
-                    canvas.getContext('2d').drawImage(img, 0, 0);
-                    const base64EncodedImageData = canvas.toDataURL('image/png').split(',')[1];
-                    $.ajax({
-                        url: "/images",
-                        type: "POST",
-                        data: base64EncodedImageData,
-                        contentType: "text/plain",
-                        success: function() {},
-                    })
-                        .then(response => {
-                            $("#merchant").val(response.merchantName)
-                            $("#amount").val(response.amount)
-                            $('video').after(`<div id="f_response">got response: <pre>${JSON.stringify(response)}</pre></div>`);
-                        })
-                        .always(() => console.log('request complete'));
+	<!-- TODO: Fix -->
+	<link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=PT+Sans|Roboto|Inconsolata' rel='stylesheet' type='text/css'>
+	<link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
 
 
+	<!-- TODO: Use bootstrap? -->
+	<!-- Latest compiled and minified CSS -->
+	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
 
-                    // For debugging, you can uncomment this to see the frame that was captured
-                    //  $('BODY').append(canvas);
-                });
+	<!-- jQuery library -->
+	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
 
-        }
+	<!-- Latest compiled JavaScript -->
+	<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+	
+	<script type="text/javascript" src="scripts/form.js"></script>
+	<meta charset="utf-8"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>PolicyMe</title>
+	<style>
+	body {
+	width: 100%;
+	background-color: rgb(196, 226, 242);
+	font-family: 'Raleway', sans-serif;
+	color: rgb(45, 43, 43);
+}
 
+h1 {
+	font-family: 'Pacifico', cursive;
+	font-size: 80px;
+	text-align: center;
+}
 
-        $(function () {
-            $('#start').on('click', startVideo);
-            $('video').on('play', () => $('#snapshot').prop('disabled', false));
-            $('#snapshot').on('click', takeSnapshot);
-        });
+#form {
+	width: 50%;
+	margin: 0 auto;
+	vertical-align: middle;
+	/*background-color: rgb(196, 226, 0);*/
+	/*text-align: center;*/
+}
 
-        const api = ""; // <- do not need a root api URL if this page is served directly by the API
+#start {
+	display: block;
+	border: 1px solid;
+	border-radius: 20px;
+	width: 50%;
+	margin: 0 auto;
+	padding: 20px;
+	font-family: 'Raleway', sans-serif;
+	font-size: 60px;
+	background-color: rgb(196, 226, 242);
+	cursor: pointer;
+}
+	</style>
+	<script>
+	$(function(){
+	windowed = $("#form");
+})
 
-        var old_receipts = [];
+var companyName;
 
+function startForm() {
+	windowed.empty();
+	$(`<form action="" onsubmit="submitComp(); return false;">`
+		+ `<h2>Company Information</h2> <br>`
+		+ `Company Name: `
+		+ `<input type="text" id="companyName"><br>`
+		+ `Company Description: <br>`
+		+ `<textarea rows="5" cols="60"></textarea><br>`
+		+ `<button type="submit">Continue</button>`
+		+ `</form>`).appendTo(windowed);
+}
 
+function submitComp() {
+	// companyName = $()
+	DOPInfo();
+}
 
-        function add_new_tag(data) {
-            var p =   data.parentNode
-            tag_ele = $(`<input class="tag_input" id="tag-input"/>`);
-            tag_ele.appendTo(p);
-            $("#tag-input").keyup(function(event){
-                if(event.keyCode == 13){
-                    tag_ele.remove()
-                    if(tag_ele[0].value)
-                    {
-                        $.ajax({
-                            url: api + "/tags/" + tag_ele[0].value,
-                            type: "PUT", dataType: "text",
-                            data: p.id,
-                            contentType: "application/json",
-                            async: false,
-                            complete: function () {
-                                var n_tag = $(`<button class="tagValue" onclick="del_tag(this)" value="${tag_ele[0].value}">${tag_ele[0].value}</button>`);
-                                n_tag.appendTo($('#' + p.id));
+function DOPInfo() {
+	windowed.empty();
+	$(`<form action="" onsubmit="return false;">`
+		+ `DOP Info: <br>`
+		+ `DPOs Name: `
+		+ `<input type="text" id="companyName"><br>`
+		+ `DPOs Contact Info: `
+		+ `<input type="text" id="companyName"><br>`
+		+ `<button onclick="startForm()">Back</button>`
+		+ `<button onclick="individualData()">Continue</button>`
+		+ `</form>`).appendTo(windowed);
+}
 
-                            },
-                        });
-                    }
+function individualData() {
+	windowed.empty();
+	$(`<form action="" onsubmit="return false;">`
+		+ `Collected Individual User Data: <br>`
+		+ `<input type="checkbox" value="email"> Email<br>`
+		+ `<input type="checkbox" value="name"> Name<br>`
+		+ `<input type="checkbox" value="address"> Address<br>`
+		+ `<button onclick="DOPInfo()">Back</button>`
+		+ `<button onclick="showResults()">Continue</button>`
+		+ `</form>`).appendTo(windowed);
+}
 
-                }
-            });
-        }
+function showResults() {
+	windowed.empty();
 
-        function del_tag(tag_element){
+	// $(`Company Name:` +)
 
-            var t_val = tag_element.value
-
-            var receipt_parent = tag_element.parentNode;
-            $.ajax({
-                url: api + "/tags/" +t_val,
-                type: "PUT", dataType: "text",
-                data: receipt_parent.id,
-                contentType: "application/json",
-                async: false,
-                complete: function(data) {
-                    tag_element.remove()
-                }
-            });
-
-        }
-
-        function add_new_receipt() {
-
-            $.ajax({
-                url: api + "/receipts",
-                type:"POST",
-                contentType: "application/json",
-                data: JSON.stringify({merchant : document.getElementById("merchant").value, amount : document.getElementById("amount").value}),
-                complete : function (data) {
-
-                    var new_r = {};
-                    new_r.merchantName = document.getElementById("merchant").value;
-                    new_r.id = parseInt(data.responseJSON);
-                    new_r.value = document.getElementById("amount").value;
-                    new_r.tags = []
-                    old_receipts = old_receipts.concat(new_r);
-
-                    enter(old_receipts);
-                }
-            })
-
-        }
-
-        function show_ncon(){
-            $("#ncon").show();
-        }
-        function hide_ncon(){
-            $("#ncon").hide();
-
-        }
-        function show_vid(){
-            $("#vidwrap").show();
-        }
-        function hide_vid(){
-            $("#vidwrap").hide();
-            track.stop();
-
-        }
-        function enter(receipts){
-            document.getElementById("receiptList").innerHTML = "";
-
-            for (var receipt_counter = 0; receipt_counter < receipts.length; receipt_counter++) {
-
-
-                var from_backend = receipts[receipt_counter];
-
-                r_obj = $(`<div class="receipt" id=${from_backend.id}>
-                <span class="created">TIME:${from_backend.created}<br></span>
-                <span class="merchant">MERCHANT NAME:${from_backend.merchantName}<br></span>
-                <span class="amount">AMOUNT :${from_backend.value}<br></span>
-                <button class="add-tag" onclick="add_new_tag(this)">Add Tag</button><br>
-                TAGS:</div>`);
-
-                for (var tag_counter=0; tag_counter < from_backend.tags.length; tag_counter++) {
-                    r_obj.append($(`<button class="tagValue" onclick="del_tag(this)" value="${from_backend.tags[tag_counter]}">${from_backend.tags[tag_counter]}</button>`))
-                }
-
-                r_obj.appendTo($('#receiptList'));
-            }
-        }
-
-        $(function(){
-
-            $.ajax({
-                url: api + "/receipts",
-                success: function (data) {
-                    old_receipts = data;
-                    $("#ncon").hide();
-                    $("#vidwrap").hide();
-                    enter(data);
-                }
-            });
-
-            /* r_obj = $(`<button id="cancel-receipt">No</button>`);
-             r_obj.appendTo($('#ncon'));
-             r_obj = $(`<button id="save-receipt" onclick="add_new_receipt()">Yes</button>`);
-             r_obj.appendTo($('#ncon'));*/
-
-        });
-
-
-
-
-    </script>
+}
+	</script>
 </head>
 
 <body>
-<button id="start" onclick="show_vid()">Start Video</button>
+<!-- <div class="container-fluid"> -->
+	<h1>PolicyMe</h1>
 
-<br>
-<div id="vidwrap">
-    <video autoplay></video>
-    <button id="snapshot" disabled="true">Take a Snapshot!</button><br>
-    <button id="cancel-video" onclick="hide_vid()">Cancel</button>
-</div>
-<DIV id="container">
-    <div id="ncon">
-        <div>MerchantName : <input id="merchant" /></div><br>
-        <div>Amount : <input id="amount" /></div>
-        <button id="cancel-receipt" onclick="hide_ncon()">Cancel</button>
-        <button id="save-receipt" onclick="add_new_receipt()">Save</button>
-    </div>
+	<div id="form">
+		<button id="start" onclick="startForm()">Start</button>
+	</div>
 
-    <h1>My receipts</h1>
-    <button class="button" id="add-receipt" onclick="show_ncon()">+</button>
-    <div id="receiptList">
-    </div>
-</DIV>
+	<div id="footer"> 
+
+	</div>
+
+<!-- </div> -->
+
 </body>
+
 </html>
