@@ -97,6 +97,8 @@ h1 {
 	var companyName;
 	var companyDescription;
 	var address;
+	var contact;
+	var website;
 	
 	$(function(){
         windowed = $("#form");
@@ -110,6 +112,10 @@ function startForm() {
 		+ `<input type="text" id="companyName"><br>`
         + `Address: `
         + `<input type="text" id="address"><br>`
+        + `Contact Number: `
+        + `<input type="text" id="contact"><br>`
+        + `Company Website: `
+        + `<input type="text" id="address"><br>`
 		+ `Company Description: <br>`
 		+ `<textarea rows="5" cols="60" id="description"></textarea><br>`
 		+ `<button type="submit">Continue</button>`
@@ -121,8 +127,10 @@ function submitComp() {
 //	console.log(companyName);
 	companyDescription = $("#description").val();
 	address = $("#address").val();
+	contact = $("#contact").val();
+	website = $("#website").val();
 //    console.log(companyDescription);
-    individualData()
+    individualData();
 }
 
 function DOPInfo() {
@@ -182,7 +190,7 @@ function saveData() {
     $.ajax({
         url: "",
         type: "POST",
-        data: JSON.stringify({"companyName": companyName, "address": address, "dataType": type, "reason": reason, "shared": share}),
+        data: JSON.stringify({"companyName": companyName, "address": address, "contact" : contact,"website" : website, "dataType": type, "reason": reason, "shared": share}),
         contentType: "application/json",
         dataType: "json",
         success: function (id) {
