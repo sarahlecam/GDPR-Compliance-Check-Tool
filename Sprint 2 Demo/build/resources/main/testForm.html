@@ -58,7 +58,7 @@
                     if (nameInput[1]) {sharedAppend = " " + sharedString};
                     dived.innerHTML = nameInput[0] + sharedAppend; //"Your name is being collected and will be stored in our data base.";
                 }
-            } else if (inputID == "mail") {
+            } else if (inputID == "email") {
                 if (data[inputID] != null) {
                     var nameInput = data[inputID];
                     var sharedAppend = "";
@@ -234,7 +234,9 @@
     <script>
 
         const api = "http://localhost:8080";
-        const companyName = "HelpMeDate";
+        url = (window.location.href).split("/");
+        companyName = url[url.length - 1];
+//        const companyName = "HelpMeDate";
         var data = {};
 
         $(function() {
@@ -267,8 +269,8 @@
         <label for="name">Name:</label>
         <input type="text" id="name" name="user_name"></input>
 
-        <label for="mail">Email:</label>
-        <input type="email" id="mail" name="user_email"></input>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="user_email"></input>
 
         <label for="password">Password:</label>
         <input type="password" id="password" name="user_password"></input>

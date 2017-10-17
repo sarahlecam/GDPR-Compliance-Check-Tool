@@ -18,7 +18,7 @@ public class StaticHtmlController {
     }
 
     @GET
-    @Path("/form/")
+    @Path("/form/{companyName}")
     public String getFormPage() throws IOException {
         Resources.getResource("testForm.html");
         return Resources.toString(Resources.getResource("testForm.html"), UTF_8);

@@ -324,7 +324,7 @@ function saveData() {
 			+ `<div>`
             + `<a id="button" href="http://localhost:8080/notice/${companyName}" target="_blank">Privacy Notice</a>`
             + `<a id="button" href="http://localhost:8080/policy" target="_blank">Privacy Policy</a>`
-            + `<a id="button" href="http://localhost:8080/form" target="_blank">Form</a>`
+            + `<a id="button" href="http://localhost:8080/form/${companyName}" target="_blank">Form</a>`
 			+ `</div>`
 		).appendTo(windowed);
         getInputs();
@@ -334,7 +334,6 @@ function saveData() {
 </head>
 
 <body>
-<!-- <div class="container-fluid"> -->
 <div class = "topRow">
 	<h1>PolicyMe</h1>
 	<ul class="Menu">
@@ -347,19 +346,14 @@ function saveData() {
 	<button id="start" onclick="startForm(); return false;">Start</button>
 </div>
 
-<!--<header class="bgimg">-->
-<!--Hi-->
-<!--</header>-->
-<!--<div>-->
-	<!--<img src="privacy.jpeg" width="100%">-->
+<!--<div id="privacyImage">-->
+	<!--<img src="https://article.images.consumerreports.org/prod/content/dam/cro/magazine-articles/2016/November/CR-Magazine-Hero-Privacy-floor-grey-09-16" height="674" width="1979"/>-->
 <!--</div>-->
 
 
 <div id="footer">
+</div>
 
-	</div>
-
-<!-- </div> -->
 
 </body>
 
