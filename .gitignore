@@ -1,12 +1,12 @@
 # These are intellij project files
-penguin/*.iml
-penguin/.idea/*
+Sprint 2 Demo/*.iml
+Sprint 2 Demo/.idea/*
 
 # This is a cache for gradle
-penguin/.gradle/*
+Sprint 2 Demo/.gradle/*
 
 # These are compiled artifacts
-penguin/build/*
+Sprint 2 Demo/build/*
 
 # This is where intellij builds the project
-penguin/out/*
+Sprint 2 Demo/out/*
