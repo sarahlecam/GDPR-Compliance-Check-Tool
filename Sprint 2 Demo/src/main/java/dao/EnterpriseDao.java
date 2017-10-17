@@ -41,4 +41,8 @@ public class EnterpriseDao {
         }
         return dataInfoResponseList;
     }
+
+    public void deleteAll() {
+        dsl.delete(DATAINFO).execute();
+    }
 }

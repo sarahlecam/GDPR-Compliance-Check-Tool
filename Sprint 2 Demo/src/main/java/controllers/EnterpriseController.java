@@ -34,4 +34,10 @@ public class EnterpriseController {
         List<DatainfoRecord> dataInfo = enterpriseDao.getAllDataInfo(companyName);
         return dataInfo.stream().map(EnterpriseResponse::new).collect(toList());
     }
+
+    @DELETE
+    @Path("/")
+    public void deleteEnterprise() {
+        enterpriseDao.deleteAll();
+    }
 }
