@@ -1,0 +1,80 @@
+<html>
+<script data-require="jquery@*" data-semver="3.1.1" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+    url = (window.location.href).split("/");
+    companyName = url[url.length - 1];
+    console.log(companyName);
+    var table = `<tr style='height: 60px'><th>Data Type</th><th>Reason</th><th>Share?</th></tr>`;
+    $("#inputList").html(table);
+    $.getJSON("/" + companyName, function(inputs){
+        for(var i=0; i < inputs.length; i++) {
+            var input = inputs[i];
+            $("#companyName").text(input.companyName);
+            $("#address").text(input.address);
+            $("#contact").text(input.contact);
+            $("#companyType").text(input.companyType);
+            $("#dpoContact").text(input.dopContact);
+            $("#dpoName").text(input.dopName);
+            $("#website").text(input.website);
+            if (input.shared == 0)
+            {
+                $(`<div style="text-align: justify;">We collect <span>${input.dataType}</span> in order <span>${input.reason}</span>. This data will not be shared with third parties without user's affirmative consent for any other purpose than that specified.</div><br>`)
+                    .appendTo($("#datainfo"));
+            }
+            else{
+                $(`<div style="text-align: justify;">We collect <span>${input.dataType}</span> in order <span>${input.reason}</span>. This data may be shared with third parties for legitimate purposes as specified in our privacy policy.</div><br>`)
+                    .appendTo($("#datainfo"));
+            }
+        }
+    });
+
+</script>
+<body>
+<div id="notice">
+</div>
+<p style="text-align: center;"><strong>PRIVACY NOTICE</strong></p>
+<p style="text-align: center;"><span style="text-decoration: underline;"><strong>About Us</strong></span></p>
+<p style="text-align: center;"><strong><span id="companyName"></span>, <span id="address"></span>, <span id="contact"></span>, <span id="website"></span></strong></p>
+<p style="text-align: center;"><strong>COPMANY TYPE : <span id="companyType"></span></strong></p>
+<p style="text-align: center;"><strong>DPO NAME : <span id="dpoName"></span></strong></p>
+<p style="text-align: center;"><strong>DOP CONTACT :<span id="dpoContact"></span></strong></p>
+<p style="text-align: center;"><strong><span style="text-decoration: underline;">Data Collection</span></strong></p>
+<p style="text-align: center;"><strong><span style="font-weight: 400;">HelpMeDate.com upholds the privacy of its users to the highest standards and has developed our &ldquo;Privacy Policy&rdquo; to demonstrate its commitment to protecting your privacy.</span></strong></p>
+<p style="text-align: center;"><strong><span style="font-weight: 400;">The following Privacy Notice is a short summary of our Privacy Policy in a concise, easily readable form.&nbsp;</span></strong><strong><span style="font-weight: 400;">Click <a href="/policy">here</a> to read our Privacy Policy in its entirety.&nbsp;</span></strong></p>
+<p style="text-align: center;"><strong><span style="font-weight: 400;">If you have any questions about our Privacy Policy or the following Privacy Notice, please contact our DPO.</span></strong></p>
+<p style="text-align: justify;">&nbsp;</p>
+<table style="width: 1241px; float: left; padding: 20px;">
+    <tbody>
+    <tr>
+        <td style="width: 616px;">
+            <p><strong>The data that you directly provide to us:</strong>&nbsp;</p>
+            <div id="datainfo">
+
+            </div>
+            <p><strong>Information that we automatically collect from you as you use our service:</strong></p>
+            <p>We automatically collect information from your browser or device when you visit our Service.</p>
+            <p>This information could include:</p>
+            <p>- your IP address; device ID and type; your browser type and language; the operating system used by your device;&nbsp; access times; and&nbsp; your mobile device&rsquo;s geographic location while our application is actively running.</p>
+            <p>We may assign your device:</p>
+            <p>one or more cookies to personalize your experience; to collect information about your activity on our service.</p>
+            <p>If we advertise, we (or third parties) may use certain data collected on our service to show you advertisements on other sites or applications&nbsp;with your affirmative consent.</p>
+        </td>
+        <td style="width: 617px; vertical-align: top; padding: 20px;">
+            <p><strong>Your&nbsp; Information Sharing Rights:</strong></p>
+            <p>Please contact our DPO if you would like to take advantage of any of the following rights:</p>
+            <p>- to file a subject-access request</p>
+            <p>- to correct any erroneous data</p>
+            <p>- to move your data to another service</p>
+            <p>- to erase your data</p>
+            <p>&nbsp;</p>
+            <p><strong>Right to report:</strong></p>
+            <p>If you believe we are processing your personal data not in accordance with the law you may complain to the Information Commissioner&rsquo;s Office:&nbsp;<a href="https://ico.org.uk/">https://ico.org.uk/</a>.</p>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<p style="text-align: justify;">&nbsp;</p>
+
+</body>
+
+</html>

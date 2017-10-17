@@ -1,0 +1,12 @@
+#policy-box {
+    position: fixed;
+    bottom: 5vh;
+    right: 5vw;
+    width: 20%;
+    background-color: rgba(151, 207, 237, 0.7);
+    border: 2px solid ;
+    border-color: #c1e9ff;
+    border-radius: 15px;
+    padding: 20px;
+    color: #2f4b77;
+}
