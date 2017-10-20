@@ -10,3 +10,9 @@ Sprint 2 Demo/build/*
 
 # This is where intellij builds the project
 Sprint 2 Demo/out/*
+
+*/__pycache__/
+*/__pycache__/*
+*.pyc
+
+*.db

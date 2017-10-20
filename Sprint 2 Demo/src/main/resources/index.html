@@ -20,9 +20,9 @@
 
 	<!-- Latest compiled JavaScript -->
 	<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
-	
+
 	<!--<script type="text/javascript" src="scripts/form.js"></script>-->
-	<meta charset="utf-8"> 
+	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>PolicyMe</title>
 	<style>
@@ -181,7 +181,7 @@
     var dpoName;
     var dpoContact;
     var companyType;
-	
+
 	$(function(){
         windowed = $("#form");
 })
@@ -281,7 +281,7 @@ function saveData() {
 //    console.log(share);
 
     $.ajax({
-        url: "",
+        url: "http://localhost:5000/api/enterprise",
         type: "POST",
         data: JSON.stringify({"companyName": companyName, "address": address, "contact" : contact,"website" : website, "dataType": type, "reason": reason, "shared": share,"dopName": dpoName,"dopContact" : dpoContact,"companyType": companyType}),
         contentType: "application/json",
