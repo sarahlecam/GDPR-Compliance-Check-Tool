@@ -35,8 +35,8 @@ public class EnterpriseController {
         return dataInfo.stream().map(EnterpriseResponse::new).collect(toList());
     }
 
-    @DELETE
-    @Path("/")
+    @POST
+    @Path("/delete")
     public void deleteEnterprise() {
         enterpriseDao.deleteAll();
     }
