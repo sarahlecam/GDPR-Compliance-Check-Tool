@@ -234,7 +234,9 @@
     <script>
 
         const api = "http://localhost:8080";
-        const companyName = "HelpMeDate";
+        url = (window.location.href).split("/");
+        companyName = url[url.length - 1];
+//        const companyName = "HelpMeDate";
         var data = {};
 
         $(function() {
