@@ -7,15 +7,17 @@ def create_app():
     '''factory for flask app object'''
 
     # create app object
-    app = Flask(__name__)
+    app = Flask(__name__, static_folder='static')
 
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///../test.db'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    # app.config['STATIC_FOLDER']='static'
     models.db.init_app(app)
 
     # register blueprints on app
     app.register_blueprint(controller.blueprints.ping.bp, url_prefix='/ping')
     app.register_blueprint(controller.blueprints.api.bp, url_prefix='/api')
+    app.register_blueprint(controller.blueprints.index.bp, url_prefix='/')
 
     # return app
     return app
