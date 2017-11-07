@@ -17,7 +17,7 @@ def create_app():
     # register blueprints on app
     app.register_blueprint(controller.blueprints.ping.bp, url_prefix='/ping')
     app.register_blueprint(controller.blueprints.api.bp, url_prefix='/api')
-    app.register_blueprint(controller.blueprints.index.bp, url_prefix='/')
+    app.register_blueprint(controller.blueprints.index.bp, url_prefix='')
 
     # return app
     return app
