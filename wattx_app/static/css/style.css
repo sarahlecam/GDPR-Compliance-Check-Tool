@@ -98,7 +98,8 @@ a:focus {
 #menu,
 #team,
 #gallery,
-#contact {
+#contact,
+#login {
   color: #656565;
   padding-top: 100px;
   padding-bottom: 100px;
@@ -108,7 +109,8 @@ a:focus {
 #video,
 #team,
 #gallery,
-#contact {
+#contact,
+#login {
   text-align: center;
 }
 
@@ -787,7 +789,7 @@ footer strong {
 @media (max-width: 650px) {
 
   #home {
-    height: 100vh;
+    height: 130vh;
   }
 
   h1 {
@@ -808,7 +810,8 @@ footer strong {
   #menu,
   #team,
   #gallery,
-  #contact {
+  #contact,
+  #login {
     padding-top: 80px;
     padding-bottom: 80px;
   }

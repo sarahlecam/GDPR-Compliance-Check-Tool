@@ -102,9 +102,11 @@ $(document).ready(function() {
   $(function(){
     jQuery(document).ready(function() {
     $('#home').backstretch([
-       "images/home-bg-slideshow1.jpg", 
-       "images/home-bg-slideshow2.jpg",
-       "images/home-bg-slideshow3.jpg",
+       "images/slide_1.jpg",
+        "images/slide_2.jpeg",
+        "images/slide_3.jpeg",
+        "images/slide_4.jpeg",
+        "images/slide_5.jpeg"
         ],  {duration: 2000, fade: 750});
     });
   })
@@ -146,6 +148,11 @@ $(document).ready(function() {
   new WOW({ mobile: false }).init();
 
   });
+
+
+
+
+
 
 
 

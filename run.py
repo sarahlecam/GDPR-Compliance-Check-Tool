@@ -11,7 +11,7 @@ def cli():
         wattx_app.reset_db()
 
     app = wattx_app.create_app()
-    app.run(debug=True)
+    app.run(debug=True, use_reloader=False)
 
 
 if __name__ == '__main__':
