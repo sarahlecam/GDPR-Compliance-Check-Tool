@@ -54,15 +54,17 @@ class Questions(db.Model):
     ''' contains survey questions for companies'''
     id = db.Column(db.Integer, primary_key=True)
     question = db.Column(db.String())
-    responseType = db.Column(db.String())
+    responseType = db.Column(db.Integer)
     order = db.Column(db.Integer)
+    options = db.Column(db.String())
 
     def to_dict(self):
         return {
             'id' : self.id,
             'question' : self.question,
             'responseType' : self.responseType,
-            'order' : self.order
+            'order' : self.order,
+            'options' : self.options
         }
 #
 # class QuestionResponses(db.model):
