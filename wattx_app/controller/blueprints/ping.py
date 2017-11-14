@@ -1,4 +1,6 @@
 from flask import jsonify, Blueprint, request
+from wattx_app.models.models import Questions
+
 
 bp = Blueprint('ping', __name__)
 
