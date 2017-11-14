@@ -16,3 +16,5 @@ Sprint 2 Demo/out/*
 *.pyc
 
 *.db
+
+wattx_app/.idea/
