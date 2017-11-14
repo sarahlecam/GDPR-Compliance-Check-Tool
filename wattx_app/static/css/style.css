@@ -528,6 +528,11 @@ a:focus {
   vertical-align: middle;
 }
 
+
+/* Login section */
+
+
+
 /*filter css*/
 .filter-wrapper {
     width: 100%;
@@ -820,4 +825,3 @@ footer strong {
   footer {text-align: center;}
 
 }
-/*WATTX Custom CSS After this */
