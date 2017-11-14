@@ -2,4 +2,4 @@ from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
-from .enterprise import Enterprise, EnterpriseData
+from .models import Enterprise, EnterpriseData, Questions

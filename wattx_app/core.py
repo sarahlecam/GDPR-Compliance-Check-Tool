@@ -1,7 +1,10 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+import csv
 from . import controller
 from . import models
+from wattx_app.models.models import Questions
+
 
 def create_app():
     '''factory for flask app object'''
@@ -27,3 +30,21 @@ def reset_db():
     app=create_app()
     models.db.drop_all(app=app)
     models.db.create_all(app=app)
+
+
+
+def import_questions(filename):
+    app = create_app()
+    # app.app_context().push()
+    with open(filename, newline='') as f:
+        reader = csv.reader(f, delimiter='\t')
+        next(reader)
+        with app.app_context():
+            for row in reader:
+                q = Questions(
+                question = row[0],
+                responseType = row[1],
+                order = row[2]
+                )
+                models.db.session.add(q)
+            models.db.session.commit()

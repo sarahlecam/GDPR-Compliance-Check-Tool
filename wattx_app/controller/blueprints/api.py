@@ -1,5 +1,5 @@
 from flask import jsonify, Blueprint, request, abort
-from wattx_app.models.enterprise import Enterprise, EnterpriseData
+from wattx_app.models.models import Enterprise, EnterpriseData, Questions
 from wattx_app.models import db
 
 bp = Blueprint('api', __name__)
