@@ -22,7 +22,6 @@ def create_app():
     app.register_blueprint(controller.blueprints.ping.bp, url_prefix='/ping')
     app.register_blueprint(controller.blueprints.api.bp, url_prefix='/api')
     app.register_blueprint(controller.blueprints.index.bp, url_prefix='')
-    app.register_blueprint(controller.blueprints.questions.bp, url_prefix='/questions')
 
     # return app
     return app
@@ -39,20 +38,22 @@ def import_questions(filename):
     app = create_app()
     # app.app_context().push()
     with open(filename, newline='') as f:
-        reader = csv.reader(f, delimiter='\t')
+        reader = csv.reader(f, delimiter=',')
         next(reader)
         with app.app_context():
 
             for row in reader:
                 try:
-                    optionval = row[3]
+                    descval = row[5]
                 except IndexError:
-                    optionval = 'null'
+                    descval = 'null'
                 q = Questions(
                 question = row[0],
-                responseType = row[1],
+                response_type = row[1],
                 order = row[2],
-                options = optionval
+                section = row[3],
+                section_name = row[4],
+                description = descval
                 )
                 models.db.session.add(q)
             models.db.session.commit()
