@@ -2,43 +2,60 @@
 
 
 var windowed;
-var companyName;
-var companyDescription;
-var address;
-var contact;
-var website;
-var dpoName;
-var dpoContact;
-var companyType;
+// var companyName;
+// var companyDescription;
+// var address;
+// var contact;
+// var website;
+// var dpoName;
+// var dpoContact;
+// var companyType;
+var questionNumber;
+var numQuestions;
+
 
 $(function(){
     windowed = $("#form");
-    startForm();
+    questionNumber = 1;
+    getNumQuestions();
+    displayNextQuestion();
 });
 
-function startForm() {
-    windowed.empty();
-    $(`<form action="" onsubmit="submitComp(); return false;">`
-        + `<h2>Company Information</h2> <br>`
-        + `Company Name: `
-        + `<input type="text" id="companyName" value="HelpMeDate"><br>`
-        + `Address: `
-        + `<input type="text" id="address" value="1 E Loop Rd., New York, New York 10044"><br>`
-        + `Contact Number: `
-        + `<input type="text" id="contact" value="(310) 254-5740"><br>`
-        + `Company Website: `
-        + `<input type="text" id="website" value="helpmedate.com"><br>`
-        + `Company Type: `
-        + `<input type="text" id="companyType" value="Online Dating Service"><br>`
-        + `DPO Name: `
-        + `<input type="text" id="dpoName" value="James Mariani"><br>`
-        + ` DPO Contact: `
-        + `<input type="text" id="dpoContact" value="james@me.com"><br>`
-        + `Company Description: <br>`
-        + `<textarea rows="5" cols="60" id="description">HelpMeDate.com helps you find that perfect someone by using proprietary algorithms and a little magic.</textarea><br>`
-        + `<button type="submit">Continue</button>`
-        + `</form>`).appendTo(windowed);
+function displayNextQuestion () {
+    if (questionNumber > numQuestions) {
+        window.location.href = "index.html";
+    } else {
+        windowed.empty();
+        getQuestion(questionNumber);
+        // $(`<form action="" onsubmit="displayNextQuestion(); return false;">`
+        //     + `<button type="submit">Continue</button>`
+        //     + `</form>`).appendTo(windowed);
+        questionNumber++;
+
+    }
 }
+
+function setNumQs (numQs) {
+    numQuestions = numQs;
+}
+
+function getNumQuestions() {
+    $.getJSON("/questions/", function(questions){
+        setNumQs(questions.length);
+    });
+}
+
+function getQuestion(qNumber) {
+    $.getJSON("/questions/" + qNumber, function(question){
+        $(`<div class="question">`
+            + question.question
+            + `</div>`
+            + `<button type="submit" onClick="displayNextQuestion(); return false;">Continue</button>`).appendTo("#form");
+        // TODO: Figure out what to print
+    });
+}
+
+
 
 function submitComp() {
     companyName = $("#companyName").val();
@@ -54,46 +71,6 @@ function submitComp() {
     individualData();
 }
 
-function DOPInfo() {
-    windowed.empty();
-    $(`<form action="" onsubmit="return false;">`
-        + `DOP Info: <br>`
-        + `DPOs Name: `
-        + `<input type="text" id="companyName"><br>`
-        + `DPOs Contact Info: `
-        + `<input type="text" id="companyName"><br>`
-        + `<button onclick="startForm()">Back</button>`
-        + `<button onclick="individualData()">Continue</button>`
-        + `</form>`).appendTo(windowed);
-}
-
-function individualData() {
-    windowed.empty();
-    $(`<h2>Collected Individual User Data</h2> <br>`
-        + `<form id="privacyField">`
-        + `<input type="text" id="type" placeholder="Data Type"><br>`
-        + `<textarea rows="5" cols="60" id="dataDescription"></textarea><br>`
-        + `<input type="checkbox" id="shared" value="share"> Share <br>`
-        + `<button id="save-data" onclick="return saveData()">Save</button>`
-        + `</form>`
-        + `<table style="width:100%" id="inputList">`
-        + `</table>`
-        + `<form action="" onsubmit="lastPage(); return false;">`
-        //		+ `<input type="text" placeholder="email"> <br>`
-        + `<button onclick="startForm()">Back</button>`
-        + `<button type="submit">Continue</button>`
-        + `</form>`).appendTo(windowed);
-    getInputs();
-}
-
-function showResults() {
-    windowed.empty();
-    $(`<div>Company Name: ${companyName} </div>`).appendTo(windowed);
-    $(`<div>Company Description: ${companyDescription} </div>`).appendTo(windowed);
-    $(`<div>Address: ${address} </div>`).appendTo(windowed);
-    $(`<button onclick="individualData()">Back</button>`).appendTo(windowed);
-
-}
 
 function saveData() {
     var type = $("#type").val();

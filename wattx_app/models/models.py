@@ -58,6 +58,7 @@ class Responses(db.Model):
         }
 
 
+
 class Recommendations(db.Model):
     ''' contains recommendations for each section of questions/responses '''
     id = db.Column(db.Integer, primary_key=True)
