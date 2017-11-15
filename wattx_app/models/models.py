@@ -8,7 +8,7 @@ class Users(db.Model):
     email = db.Column(db.String())
     password = db.Column(db.String())
     created = db.Column(db.DateTime, default=db.func.now())
-    responses = db.relationship('Responses', backref = 'company', lazy = 'dynamic')
+    responses = db.relationship('Responses')
 
 
     def to_dict(self):

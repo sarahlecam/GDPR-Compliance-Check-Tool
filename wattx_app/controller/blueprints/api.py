@@ -34,7 +34,9 @@ def enterprise_view():
 
 
         # Return company id
-        return str(e.company_id)
+        r = jsonify(e.to_dict())
+        r.set_cookie('company_id', value = str(e.company_id))
+        return r
 
     elif request.method == 'GET':
         users = Users.query.all()
@@ -64,10 +66,13 @@ def get_responses():
     elif request.method == 'POST':
         body = request.json
 
-        print(body)
+        print('-'*50)
+        print(request.data)
+        print('-'*50)
+
         r = Responses(
         question_id = body['question_id'],
-        company_id = body['company_id'],
+        company_id = int(request.cookies.get('company_id')),
         response = body['response']
         )
 
