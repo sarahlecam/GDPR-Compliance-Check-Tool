@@ -70,3 +70,6 @@ class Questions(db.Model):
 # class QuestionResponses(db.model):
 #     '''contains responses to survey questions for each company'''
 #     id = db.Column(db.Integer, primary_key=true)
+
+# if __name__ == '__main__':
+#     db.create_all()
