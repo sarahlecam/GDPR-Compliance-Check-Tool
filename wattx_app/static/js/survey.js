@@ -11,6 +11,7 @@ var dpoName;
 var dpoContact;
 var companyType;
 
+
 $(function(){
     windowed = $("#form");
     startForm();
@@ -18,24 +19,10 @@ $(function(){
 
 function startForm() {
     windowed.empty();
+
+    
+
     $(`<form action="" onsubmit="submitComp(); return false;">`
-        + `<h2>Company Information</h2> <br>`
-        + `Company Name: `
-        + `<input type="text" id="companyName" value="HelpMeDate"><br>`
-        + `Address: `
-        + `<input type="text" id="address" value="1 E Loop Rd., New York, New York 10044"><br>`
-        + `Contact Number: `
-        + `<input type="text" id="contact" value="(310) 254-5740"><br>`
-        + `Company Website: `
-        + `<input type="text" id="website" value="helpmedate.com"><br>`
-        + `Company Type: `
-        + `<input type="text" id="companyType" value="Online Dating Service"><br>`
-        + `DPO Name: `
-        + `<input type="text" id="dpoName" value="James Mariani"><br>`
-        + ` DPO Contact: `
-        + `<input type="text" id="dpoContact" value="james@me.com"><br>`
-        + `Company Description: <br>`
-        + `<textarea rows="5" cols="60" id="description">HelpMeDate.com helps you find that perfect someone by using proprietary algorithms and a little magic.</textarea><br>`
         + `<button type="submit">Continue</button>`
         + `</form>`).appendTo(windowed);
 }
