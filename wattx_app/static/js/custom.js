@@ -123,6 +123,7 @@ $(document).ready(function() {
 
   /* Parallax section
     -----------------------------------------------*/
+    // TODO: Check all are here
   function initParallax() {
     $('#about').parallax("100%", 0.1);
     $('#feature').parallax("100%", 0.3);
@@ -132,6 +133,7 @@ $(document).ready(function() {
     $('#team').parallax("100%", 0.3);
     $('#gallery').parallax("100%", 0.1);
     $('#contact').parallax("100%", 0.2);
+    // $('#login').parallax("100%", 0.2);
   }
   initParallax();
 
@@ -149,6 +151,8 @@ $(document).ready(function() {
 
   });
 
+// Custom JS
+// $(`<li><a href="#login" class="smoothScroll">Login</a></li>`).appendTo('#nav');
 
 
 
