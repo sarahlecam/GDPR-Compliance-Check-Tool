@@ -99,7 +99,8 @@ a:focus {
 #team,
 #gallery,
 #contact,
-#login {
+#login,
+#survey {
   color: #656565;
   padding-top: 100px;
   padding-bottom: 100px;
@@ -262,12 +263,12 @@ a:focus {
     background-color: transparent;
 }
 
-.navbar-default .navbar-nav > .active > a,
+/*.navbar-default .navbar-nav > .active > a,
 .navbar-default .navbar-nav > .active > a:hover,
 .navbar-default .navbar-nav > .active > a:focus {
     color: #1a2a42;
     background-color: transparent;
-}
+}*/
 
 .navbar-default .navbar-toggle {
      border: none;
@@ -300,6 +301,25 @@ a:focus {
   background: #6e7d93 !important;
   color:  #ffffff;
 }
+
+/*.hvr-bounce-to-top {
+  display: inline-block;
+  vertical-align: middle;
+  transform: translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  backface-visibility: hidden;
+  -moz-osx-font-smoothing: grayscale;
+  transition-duration: 0.3s;
+  transition-property: transform;
+  transition-timing-function: ease-out;
+  color: #fff ;
+}
+.hvr-bounce-to-top:hover,
+.hvr-bounce-to-top:focus,
+.hvr-bounce-to-top:active {
+  transform: translateY(-8px);
+}*/
+
 /*
 .navbar-default > .active > .btn,
 .navbar-default > .active > .btn:hover,
@@ -562,7 +582,7 @@ a:focus {
 
 
 /* Login section */
-#login {
+#survey {
   height: 300px;
 }
 
@@ -706,6 +726,10 @@ footer strong {
   padding-bottom: 2px;
 }
 
+/* For the survey */
+#survey {
+  /*margin-bottom: 20px;*/
+}
 
 /* copyright section  */
 #copyright p {
@@ -843,7 +867,8 @@ footer strong {
   #team,
   #gallery,
   #contact,
-  #login {
+  #login,
+  #survey {
     padding-top: 80px;
     padding-bottom: 80px;
   }
