@@ -1,6 +1,6 @@
 from flask import jsonify, Blueprint, request
 from wattx_app.models.models import Questions
-
+from wattx_app.controller.security import require_cookie
 
 bp = Blueprint('ping', __name__)
 
@@ -17,6 +17,7 @@ def cookie_insertion():
     return response
 
 @bp.route('/read_cookie')
+@require_cookie
 def read_cookie():
     return request.cookies.get('company_id')
 
