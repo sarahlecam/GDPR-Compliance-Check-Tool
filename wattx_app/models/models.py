@@ -57,8 +57,21 @@ class Responses(db.Model):
             'response' : self.response
         }
 
-
-
 class Recommendations(db.Model):
     ''' contains recommendations for each section of questions/responses '''
     id = db.Column(db.Integer, primary_key=True)
+    section = db.Column(db.String(), db.ForeignKey(Questions.section))
+    section_name = db.Column(db.String(), db.ForeignKey(Questions.section_name))
+    rec_text = db.Column(db.String())
+    flagged = db.Column(db.Integer)
+    completed = db.Column(db.Integer)
+
+    def to_dict(self):
+        return {
+            'id' : self.id,
+            'section' : self.section,
+            'section_name' : self.section_name,
+            'rec_text' : self.rec_text,
+            'flagged' : self.flagged,
+            'completed' : self.completed
+        }
