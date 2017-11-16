@@ -41,6 +41,11 @@ function getQuestion(qNumber) {
     if (qNumber == 1) {
         $.getJSON("api/questions/" + qNumber, function(question){
             $(`<div class="question">`
+                + `<h2>`
+                + question.section
+                + `. `
+                + question.section_name
+                + `</h2>`
                 + question.question
                 + `<form id="privacyField">`
                 + `<input type="radio" name="response" value="true"> Yes<br>`
@@ -52,6 +57,11 @@ function getQuestion(qNumber) {
     } else {
         $.getJSON("api/questions/" + qNumber, function(question){
             $(`<div class="question">`
+                + `<h2>`
+                + question.section
+                + `. `
+                + question.section_name
+                + `</h2>`
                 + question.question
                 + `<form id="privacyField">`
                 + `<input type="radio" name="response" value="true" required> Yes<br>`
