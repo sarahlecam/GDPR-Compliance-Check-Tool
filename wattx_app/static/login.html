@@ -37,63 +37,66 @@
     <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,600' rel='stylesheet' type='text/css'>
 
-    <!-- JS -->
-    <script src="js/jquery.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-
-    <script src="js/jquery.magnific-popup.min.js"></script>
-
-    <script src="js/jquery.sticky.js"></script>
-    <script src="js/jquery.backstretch.min.js"></script>
-
-    <script src="js/isotope.js"></script>
-    <script src="js/imagesloaded.min.js"></script>
-    <script src="js/nivo-lightbox.min.js"></script>
-
-    <script src="js/jquery.flexslider-min.js"></script>
-
-    <script src="js/jquery.parallax.js"></script>
-    <script src="js/smoothscroll.js"></script>
-    <script src="js/wow.min.js"></script>
-
-    <script src="js/custom.js"></script>
-    <script src="js/survey.js"></script>
-
 </head>
 <body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
-    
+
 <!-- Preloader section -->
 <div class="preloader">
     <div class="sk-spinner sk-spinner-pulse"></div>
 </div>
 
+<!-- Navigation section -->
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+
+    <div class="navbar-header">
+      <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="icon icon-bar"></span>
+        <span class="icon icon-bar"></span>
+        <span class="icon icon-bar"></span>
+      </button>
+      <a href="index.html" class="navbar-brand">CheckMate</a>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav navbar-left">
+        <li><a href="index.html" class="smoothScroll">Home</a></li>
+        <li><a href="about.html" class="smoothScroll">About</a></li>
+        <li><a href="team.html" class="smoothScroll">Team</a></li>
+        <li><a href="contact.html" class="smoothScroll">Contact</a></li>
+      </ul>
+      <a href="login.html" class="smoothScroll btn btn-default navbar-right" style="background: #6e7d93 !important; color:  #ffffff;">Login or Sign Up</a>
+    </div>
+  </div>
+</div>
+
 
 <!-- Home section -->
 <section id="home" class="parallax-section">
-    <div class="gradient-overlay"></div>
-    <div class="container">
-        <div class="row">
-
-            <div class="col-md-offset-2 col-md-8 col-sm-12">
-                <h1 class="wow fadeInUp" data-wow-delay="0.6s">CheckMate</h1>
-                <p class="wow fadeInUp" data-wow-delay="1.0s">CheckMate helps businesses navigate GDPR and reach compliance.</p>
-                <a href="#feature" class="wow fadeInUp btn btn-default hvr-bounce-to-top smoothScroll" data-wow-delay="1.3s">Learn More</a>
-            </div>
-
-        </div>
+  <div class="gradient-overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-offset-2 col-md-8 col-sm-12">
+        <h1 class="wow fadeInUp" data-wow-delay="0.6s">Sign Up</h1>
+        <p class="wow fadeInUp" data-wow-delay="1.0s">Let's get started!</p>
+      </div>
     </div>
+  </div>
 </section>
 
-<!-- Questionaire section -->
-<section id="survey">
+<!-- Login section -->
+<section id="login">
     <div id="container">
-
-        <div id="form">
+        <!-- TODO: fix form -->
+        <div class="col-md-offset-3 col-md-6 col-sm-offset-1 col-sm-10">
+            <div id="login_div">
+                <form id="contact-form" onsubmit="addUser(); return false;">
+                    <input name="name" type="text" id="name" class="form-control" placeholder="Company Name" required>
+                    <input name="email" type="email" id="email" class="form-control" placeholder="Email" required>
+                    <input name="password" type="password" id="password" class="form-control" placeholder="Password" required>
+                    <input type="submit" class="form-control submit" value="Sign Up">
+                </form>
+            </div>
         </div>
-
-<!-- TODO: Add progress bar -->
-        <!-- <div id="progress">
-        </div> -->
 
     </div>
 </section>
@@ -131,7 +134,7 @@
 </footer>
 
 <!-- Copyright section -->
-<section id="copyright">
+<!-- <section id="copyright">
     <div class="container">
         <div class="row">
 
@@ -145,7 +148,29 @@
 
         </div>
     </div>
-</section>
+</section> -->
+
+<!-- javscript js -->
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+<script src="js/jquery.magnific-popup.min.js"></script>
+
+<script src="js/jquery.sticky.js"></script>
+<script src="js/jquery.backstretch.min.js"></script>
+
+<script src="js/isotope.js"></script>
+<script src="js/imagesloaded.min.js"></script>
+<script src="js/nivo-lightbox.min.js"></script>
+
+<script src="js/jquery.flexslider-min.js"></script>
+
+<script src="js/jquery.parallax.js"></script>
+<script src="js/smoothscroll.js"></script>
+<script src="js/wow.min.js"></script>
+
+<script src="js/custom.js"></script>
+<script src="js/login.js"></script>
 
 </body>
 </html>
