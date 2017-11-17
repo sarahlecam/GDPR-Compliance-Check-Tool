@@ -103,8 +103,8 @@ a:focus {
 #survey,
 #checklist {
   color: #656565;
-  padding-top: 100px;
-  padding-bottom: 100px;
+  padding-top: 80px;
+  padding-bottom: 80px;
 }
 
 #feature,
@@ -339,7 +339,7 @@ a:focus {
   margin-top: 32px;
 }
 #feature .feature-icon {
-  background-color: #222;
+  background-color: #2a3e5b;
   width: 85px;
   height: 85px;
   margin: 0 auto;
@@ -356,7 +356,7 @@ a:focus {
   transition: all 0.4s ease-in-out;
 }
 #feature .feature-icon:hover {
-  background-color: #c21500;
+  background-color: #6e7d93;
 }
 #feature .feature-icon span {
   display: table-cell;
@@ -584,7 +584,7 @@ a:focus {
 
 /* Login section */
 #survey {
-  min-height: 400px;
+  min-height: 350px;
 }
 
 
@@ -707,14 +707,14 @@ a:focus {
 
 /* Footer section  */
 footer {
-  background-color: #141414;
-  color: #757575;
-  padding-top: 100px;
-  padding-bottom: 100px;
+  background-color: #6e7d93;
+  color: #000000;
+  padding-top: 30px;
+  padding-bottom: 30px;
 }
 
 footer h3 {
-  color: #ffffff;
+  color: #000000;
   text-transform: uppercase;
   padding-bottom: 14px;
 }
@@ -892,4 +892,26 @@ footer strong {
   min-height: 500px;
   /*background-color: red;*/
   /*height: ;*/
+}
+
+.question h2 {
+  padding-bottom: 20px;
+}
+.question {
+  /*width: 90%;*/
+  font-size: 25px;
+}
+
+.question #ques {
+  padding-bottom: 20px;
+}
+
+.question #privacyField {
+  vertical-align: middle;
+  text-align: center;
+}
+
+.question #privacyField [type="radio"]:checked,
+[type="radio"]:not(:checked) {
+  display: inline-block;
 }

@@ -48,9 +48,11 @@ function getQuestion(qNumber) {
                 + `<h2>`
                 + question.section_name
                 + `</h2>`
+                + `<div id="ques">`
                 + question.order
                 + `. `
                 + question.question
+                + `</div>`
                 + `<form id="privacyField">`
                 + `<input type="radio" name="response" value="true" id="1"> Yes<br>`
                 + `<input type="radio" name="response" value="false" id="2"> No<br>`
@@ -64,9 +66,11 @@ function getQuestion(qNumber) {
                 + `<h2>`
                 + question.section_name
                 + `</h2>`
+                + `<div id="ques">`
                 + question.order
                 + `. `
                 + question.question
+                + `</div>`
                 + `<form id="privacyField">`
                 + `<input type="radio" name="response" value="true"> Yes<br>`
                 + `<input type="radio" name="response" value="false"> No<br>`
