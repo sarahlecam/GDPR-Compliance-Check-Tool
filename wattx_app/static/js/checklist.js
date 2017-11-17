@@ -28,15 +28,16 @@ function getRecommendations() {
 				checkImg = "checked.png";
 			}
 
-			$(`<div class="rec_" + ${recommendation.id}>`
+			$(`<div id="rec" class="rec_" + ${recommendation.id}>`
 				// + <>
+				+ `<input type="image" class="flag" id="flag_${recommendation.section}" src="images/${flagImg}" onClick="toggleFlag(${recommendation.section}); return false;" width="40" height="40">`
+	            + `<input type="image" class="check" id="check_${recommendation.section}" src="images/${checkImg}" onClick="toggleCheck(${recommendation.section}); return false;" width="25" height="25">`
 	            + `<h3>`
-	            + `<input type="image" id="check_${recommendation.section}" src="images/${checkImg}" onClick="toggleCheck(${recommendation.section}); return false;" width="25" height="25">`
+	            
 	            // + recommendation.section
 	            // + `. `
 	            + recommendation.section_name
 	            + `</h3>`
-	            + `<input type="image" id="flag_${recommendation.section}" src="images/${flagImg}" onClick="toggleFlag(${recommendation.section}); return false;" width="48" height="48">`
 	            + `<br>`
 	            + recommendation.rec_text
 	            + `</div>`).appendTo("#recommendations");
@@ -142,15 +143,15 @@ function selection() {
 					checkImg = "checked.png";
 				}
 
-				$(`<div class="rec_" + ${recommendation.id}>`
+				$(`<div id="rec" class="rec_" + ${recommendation.id}>`
 					// + <>
+					+ `<input type="image" class="flag" id="flag_${recommendation.section}" src="images/${flagImg}" onClick="toggleFlag(${recommendation.section}); return false;" width="40" height="40">`
+		            + `<input type="image" class="check" id="check_${recommendation.section}" src="images/${checkImg}" onClick="toggleCheck(${recommendation.section}); return false;" width="25" height="25">`
 		            + `<h3>`
-		            + `<input type="image" id="check_${recommendation.section}" src="images/${checkImg}" onClick="toggleCheck(${recommendation.section}); return false;" width="25" height="25">`
 		            // + recommendation.section
 		            // + `. `
 		            + recommendation.section_name
 		            + `</h3>`
-		            + `<input type="image" id="flag_${recommendation.section}" src="images/${flagImg}" onClick="toggleFlag(${recommendation.section}); return false;" width="48" height="48">`
 		            + `<br>`
 		            + recommendation.rec_text
 		            + `</div>`).appendTo("#recommendations");
@@ -181,15 +182,15 @@ function selection() {
 					checkImg = "checked.png";
 				}
 
-				$(`<div class="rec_" + ${recommendation.id}>`
+				$(`<div id="rec" class="rec_" + ${recommendation.id}>`
 					// + <>
+					+ `<input type="image" class="flag" id="flag_${recommendation.section}" src="images/${flagImg}" onClick="toggleFlag(${recommendation.section}); return false;" width="40" height="40">`
+		            + `<input type="image" class="check" id="check_${recommendation.section}" src="images/${checkImg}" onClick="toggleCheck(${recommendation.section}); return false;" width="25" height="25">`
 		            + `<h3>`
-		            + `<input type="image" id="check_${recommendation.section}" src="images/${checkImg}" onClick="toggleCheck(${recommendation.section}); return false;" width="25" height="25">`
 		            // + recommendation.section
 		            // + `. `
 		            + recommendation.section_name
 		            + `</h3>`
-		            + `<input type="image" id="flag_${recommendation.section}" src="images/${flagImg}" onClick="toggleFlag(${recommendation.section}); return false;" width="48" height="48">`
 		            + `<br>`
 		            + recommendation.rec_text
 		            + `</div>`).appendTo("#recommendations");
@@ -222,15 +223,15 @@ function selection() {
 					checkImg = "checked.png";
 				}
 
-				$(`<div class="rec_" + ${recommendation.id}>`
+				$(`<div id="rec" class="rec_" + ${recommendation.id}>`
 					// + <>
+					+ `<input type="image" class="flag" id="flag_${recommendation.section}" src="images/${flagImg}" onClick="toggleFlag(${recommendation.section}); return false;" width="40" height="40">`
+		            + `<input type="image" class="check" id="check_${recommendation.section}" src="images/${checkImg}" onClick="toggleCheck(${recommendation.section}); return false;" width="25" height="25">`
 		            + `<h3>`
-		            + `<input type="image" id="check_${recommendation.section}" src="images/${checkImg}" onClick="toggleCheck(${recommendation.section}); return false;" width="25" height="25">`
 		            // + recommendation.section
 		            // + `. `
 		            + recommendation.section_name
 		            + `</h3>`
-		            + `<input type="image" id="flag_${recommendation.section}" src="images/${flagImg}" onClick="toggleFlag(${recommendation.section}); return false;" width="48" height="48">`
 		            + `<br>`
 		            + recommendation.rec_text
 		            + `</div>`).appendTo("#recommendations");

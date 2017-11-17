@@ -74,8 +74,9 @@ function getQuestion(qNumber) {
                 + `<form id="privacyField">`
                 + `<input type="radio" name="response" value="true"> Yes<br>`
                 + `<input type="radio" name="response" value="false"> No<br>`
-                + `<button onClick="goBack(); return false;">Back</button>`
                 + `<button type="submit" onClick="saveData(); return false;">Continue</button>`
+                + `<button onClick="goBack(); return false;">Back</button>`
+                
                 + `</form>`
                 + `</div>`).appendTo("#form");
         });

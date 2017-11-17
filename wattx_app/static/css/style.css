@@ -196,6 +196,23 @@ a:focus {
   position: relative;
 }
 
+#home2 {
+  color: #ffffff;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+        align-items: center;
+  text-align: center;
+  /*height: 50vh;*/
+  /*height: 350px;*/
+  overflow: hidden;
+  position: relative;
+}
+
 #home .gradient-overlay {
   background: #c21500; /* fallback for old browsers */  
   background: -webkit-linear-gradient(to left, #6e7d93 , #2a3e5b); /* Chrome 10-25, Safari 5.1-6 */
@@ -206,6 +223,18 @@ a:focus {
   width: 100%;
   /*height: 100vh;*/
   height: 500px;
+}
+
+#home2 .gradient-overlay {
+  background: #c21500; /* fallback for old browsers */  
+  background: -webkit-linear-gradient(to left, #6e7d93 , #2a3e5b); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #6e7d93 , #2a3e5b); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  opacity: 0.8;      
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  /*height: 500px;*/
 }
 
 #home .btn {
@@ -729,6 +758,7 @@ footer strong {
 
 /* For the survey */
 #survey {
+  min-height: 500px;
   /*margin-bottom: 20px;*/
 }
 
@@ -908,10 +938,108 @@ footer strong {
 
 .question #privacyField {
   vertical-align: middle;
-  text-align: center;
+  /*text-align: center;*/
 }
 
-.question #privacyField [type="radio"]:checked,
-[type="radio"]:not(:checked) {
-  display: inline-block;
+.question input {
+  /*display: inline-block;*/
+  /*padding-top: -10px;*/
+  /*padding-bottom: 10px;*/
 }
+
+.question button {
+  background-color: #ffffff;
+  margin-top: 20px;
+  margin-right: 10px;
+  margin-left: 10px;
+  border: 2px solid;
+  border-color: #656565;
+  /*width: 100px;*/
+  float: right;
+  /*font-size: 2em;*/
+  color: #656565;
+  text-align: center;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#rec {
+  border: 1px solid;
+  border-color: #656565;
+  border-radius: 5px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  padding: 30px;
+  padding-top: 10px;
+  font-size: 18px;
+  text-align: justify;
+}
+
+#rec .flag {
+  float: right;
+  margin-top: 10px;
+}
+
+#rec .check {
+  margin-top: 20px;
+  float: left;
+  margin-right: 10px;
+}
+
+#rec h3 {
+  margin-bottom: -5px;
+}
+
+#side {
+  font-size: 20px;
+}
+
+#side input {
+  /*margin-top: -15px;*/
+}
+
+#side h2 {
+  font-size: 30px !important;
+}
+
+#contact-form input {
+  margin-bottom: 10px;
+}
+
+#contact-form button {
+  background-color: transparent;
+  margin-top: 20px;
+  margin-right: auto;
+  margin-left: auto;
+  /*padding: 20px;*/
+  /*width: 100px;*/
+  /*float: center;*/
+  /*font-size: 2em;*/
+  width: 50%;
+  color: #ffffff;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 5px;
+  cursor: pointer;
+  /*font-size: 20px;*/
+  border: 2px solid;
+  border-color: #ffffff;
+}
+
+
+#login_div {
+  margin-top:40px;
+  margin-bottom:80px;
+}
+
+#/*home2 {
+  margin-top: 100px;
+}*/
+
+/*#login*/
+
+
+
+
+
+

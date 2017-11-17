@@ -108,6 +108,13 @@ $(document).ready(function() {
         "images/slide_4.jpeg",
         "images/slide_5.jpeg"
         ],  {duration: 2000, fade: 750});
+    $('#home2').backstretch([
+       "images/slide_1.jpg",
+        "images/slide_2.jpeg",
+        "images/slide_3.jpeg",
+        "images/slide_4.jpeg",
+        "images/slide_5.jpeg"
+        ],  {duration: 2000, fade: 750});
     });
   })
 

@@ -73,7 +73,7 @@
 
 
 <!-- Home section -->
-<section id="home" class="parallax-section">
+<section id="home2" class="parallax-section">
   <div class="gradient-overlay"></div>
   <div class="container">
     <div class="row">
@@ -82,13 +82,24 @@
         <p class="wow fadeInUp" data-wow-delay="1.0s">Let's get started!</p>
       </div>
     </div>
+    <div class="row">
+            <div class="col-md-offset-3 col-md-6 col-sm-offset-1 col-sm-10">
+                <div id="login_div">
+                    <form id="contact-form" onsubmit="addUser(); return false;">
+                        <input name="name" type="text" id="name" class="form-control" placeholder="Company Name" required>
+                        <input name="email" type="email" id="email" class="form-control" placeholder="Email" required>
+                        <input name="password" type="password" id="password" class="form-control" placeholder="Password" required>
+                        <button type="submit" class="form-control submit" value="Sign Up">Sign Up</button>
+                    </form>
+                </div>
+            </div>
+        </div>
   </div>
 </section>
 
 <!-- Login section -->
-<section id="login">
+<!-- <section id="login">
     <div id="container">
-        <!-- TODO: fix form -->
         <div class="row">
             <div class="col-md-offset-3 col-md-6 col-sm-offset-1 col-sm-10">
                 <div id="login_div">
@@ -103,7 +114,7 @@
         </div>
 
     </div>
-</section>
+</section> -->
 
 
 <!-- Footer section -->
