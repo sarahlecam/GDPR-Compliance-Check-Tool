@@ -166,8 +166,9 @@ def get_recs():
                     flagged = 0,
                     completed = complete
                     )
-                    # Add and commit
+                    # Add session
                     db.session.add(rcs)
+                # Commit session
                 db.session.commit()
 
         recs = Recommendations.query.filter(Recommendations.company_id == c_id_from_cookie).all()

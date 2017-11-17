@@ -60,7 +60,7 @@ class Responses(db.Model):
 class RecText(db.Model):
     '''contains prescribed text recommendations for different responses to sections'''
     id = db.Column(db.Integer, primary_key=True)
-    section = db.Column(db.String(), db.ForeignKey(Questions.section))
+    section = db.Column(db.Integer, db.ForeignKey(Questions.section))
     rec_text = db.Column(db.String())
     completed = db.Column(db.Integer)
 
@@ -77,7 +77,7 @@ class Recommendations(db.Model):
     ''' contains recommendations for each section of questions/responses '''
     id = db.Column(db.Integer, primary_key=True)
     company_id = db.Column(db.Integer, db.ForeignKey(Users.company_id))
-    section = db.Column(db.String(), db.ForeignKey(Questions.section))
+    section = db.Column(db.Integer, db.ForeignKey(Questions.section))
     section_name = db.Column(db.String(), db.ForeignKey(Questions.section_name))
     rec_text = db.Column(db.String())
     flagged = db.Column(db.Integer)
