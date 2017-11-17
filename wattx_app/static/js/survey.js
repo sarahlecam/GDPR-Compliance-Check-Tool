@@ -46,10 +46,10 @@ function getQuestion(qNumber) {
         $.getJSON("api/questions/" + qNumber, function(question){
             $(`<div class="question">`
                 + `<h2>`
-                + question.section
-                + `. `
                 + question.section_name
                 + `</h2>`
+                + question.order
+                + `. `
                 + question.question
                 + `<form id="privacyField">`
                 + `<input type="radio" name="response" value="true" id="1"> Yes<br>`
@@ -62,10 +62,10 @@ function getQuestion(qNumber) {
         $.getJSON("api/questions/" + qNumber, function(question){
             $(`<div class="question">`
                 + `<h2>`
-                + question.section
-                + `. `
                 + question.section_name
                 + `</h2>`
+                + question.order
+                + `. `
                 + question.question
                 + `<form id="privacyField">`
                 + `<input type="radio" name="response" value="true"> Yes<br>`
@@ -104,5 +104,6 @@ function saveData() {
 function goBack() {
     questionNumber = questionNumber - 2;
     displayNextQuestion ();
+
 }
 
