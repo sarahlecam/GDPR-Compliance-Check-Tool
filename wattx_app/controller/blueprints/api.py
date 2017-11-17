@@ -197,5 +197,36 @@ def update_rec(id1):
     # Return jsonified Recommendations object
     return jsonify(rec.to_dict())
 
+
+@bp.route("/recs/filter/", methods=['GET'])
+@require_cookie
+def filter_recs():
+    # Get company_id from cookie
+    c_id_from_cookie = int(request.cookies.get('company_id'))
+
+    # Get request args
+    flagged_setting = request.args.get('flagged')
+    print("Flagged setting: ", flagged_setting)
+    completed_setting = request.args.get('completed')
+    print("Completed setting: ", completed_setting)
+
+    if flagged_setting is not None and completed_setting is not None:
+        recs = Recommendations.query.filter(Recommendations.company_id == c_id_from_cookie)\
+        .filter(Recommendations.flagged == flagged_setting)\
+        .filter(Recommendations.completed == completed_setting).all()
+    elif flagged_setting is not None:
+        recs = Recommendations.query.filter(Recommendations.company_id == c_id_from_cookie)\
+        .filter(Recommendations.flagged == flagged_setting).all()
+    elif completed_setting is not None:
+        recs = Recommendations.query.filter(Recommendations.company_id == c_id_from_cookie)\
+        .filter(Recommendations.completed == completed_setting).all()
+    else:
+        r = jsonify({'Handling error': 'No parameters supplied'})
+        r.status_code = 400
+        return r
+    return jsonify([r.to_dict() for r in recs])
+
+
+
 #
 #
