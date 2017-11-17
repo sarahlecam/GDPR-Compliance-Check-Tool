@@ -11,5 +11,8 @@ To first establish a cleared database run:
 To import the questions.csv file into the database:
 `python run.py --import-ques questions.csv`
 
+To import the recommendations.csv file into the database:
+`python run.py --import-recs recommendations.csv`
+
 To run the server after set up:
 `python run.py`
