@@ -887,3 +887,9 @@ footer strong {
   footer {text-align: center;}
 
 }
+
+#recommendations {
+  min-height: 500px;
+  /*background-color: red;*/
+  /*height: ;*/
+}
