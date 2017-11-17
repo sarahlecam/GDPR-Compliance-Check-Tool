@@ -163,10 +163,26 @@ def get_recs():
         recs = Recommendations.query.filter(Recommendations.company_id == c_id_from_cookie).all()
         return jsonify([r.to_dict() for r in recs])
 
+@bp.route("/recs/<int:id1>", methods = ['POST'])
+@require_cookie
+def update_rec(id1):
+    # Get company_id from cookie
+    c_id_from_cookie = int(request.cookies.get('company_id'))
 
+    # Get request body
+    body = request.json
 
+    # Update rec with contents of body
+    rec = Recommendations.query.filter(Recommendations.company_id == c_id_from_cookie)\
+    .filter(Recommendations.section == id1).first()
+    rec.flagged = body['flagged']
+    rec.completed = body['completed']
 
+    # Commit session
+    db.session.commit()
 
+    # Return jsonified Recommendations object
+    return jsonify(rec.to_dict())
 
 #
 #
