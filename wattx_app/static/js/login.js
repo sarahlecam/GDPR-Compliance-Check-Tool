@@ -4,7 +4,6 @@ var login_div;
 
 $(function(){
     login_div = $("#login_div");
-    // questionNumber = 1;
 });
 
 function addUser() {

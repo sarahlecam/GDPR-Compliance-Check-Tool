@@ -100,7 +100,8 @@ a:focus {
 #gallery,
 #contact,
 #login,
-#survey {
+#survey,
+#checklist {
   color: #656565;
   padding-top: 100px;
   padding-bottom: 100px;
@@ -111,7 +112,8 @@ a:focus {
 #team,
 #gallery,
 #contact,
-#login {
+#login,
+#checklist {
   text-align: center;
 }
 
@@ -868,7 +870,8 @@ footer strong {
   #gallery,
   #contact,
   #login,
-  #survey {
+  #survey,
+  #checklist {
     padding-top: 80px;
     padding-bottom: 80px;
   }
