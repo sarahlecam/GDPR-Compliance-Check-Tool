@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 import csv
 from . import controller
 from . import models
-from wattx_app.models.models import Questions
+from wattx_app.models.models import Questions, RecText
 
 
 def create_app():
@@ -33,10 +33,8 @@ def reset_db():
     models.db.create_all(app=app)
 
 
-
 def import_questions(filename):
     app = create_app()
-    # app.app_context().push()
     with open(filename, newline='') as f:
         reader = csv.reader(f, delimiter=',')
         next(reader)
@@ -56,4 +54,20 @@ def import_questions(filename):
                 description = descval
                 )
                 models.db.session.add(q)
+            models.db.session.commit()
+
+
+def import_recs(filename):
+    app = create_app()
+    with open(filename, newline='') as f:
+        reader = csv.reader(f, delimiter=',')
+        next(reader)
+        with app.app_context():
+            for row in reader:
+                rt = RecText(
+                rec_text = row[0].strip(),
+                section = row[1],
+                completed = row[2]
+                )
+                models.db.session.add(rt)
             models.db.session.commit()

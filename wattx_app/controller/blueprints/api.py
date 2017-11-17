@@ -1,8 +1,9 @@
 from flask import jsonify, Blueprint, request, abort
-from wattx_app.models.models import Users, Questions, Responses
+from wattx_app.models.models import Users, Questions, Responses, RecText, Recommendations
 from wattx_app.controller.security import require_cookie
 from wattx_app.controller.recommend_logic import rec_logic
 from wattx_app.models import db
+from sqlalchemy.sql.expression import func
 
 bp = Blueprint('api', __name__)
 
@@ -118,24 +119,49 @@ def get_specific_resp(id1):
 
 
 
-@bp.route("/recs", methods = ['GET'])
+@bp.route("/recs", methods = ['GET', 'POST'])
 @require_cookie
 def get_recs():
+    # Get company_id from cookie
+    c_id_from_cookie = int(request.cookies.get('company_id'))
+
     if request.method == 'GET':
+        recs = Recommendations.query.filter_by(company_id = c_id_from_cookie).all()
+        return jsonify([r.to_dict() for r in recs])
 
-        # Get company_id from cookie
-        c_id_from_cookie = int(request.cookies.get('company_id'))
+    if request.method == 'POST':
 
+        # Get distinct section numbers from Questions table
+        distinct_sec_nums = [s[0] for s in db.session.query(Questions.section).distinct()]
 
-        resp_text = rec_logic(c_id_from_cookie)
+        # Max number of rectext entries
+        max_recs = db.session.query(func.max(RecText.section)).one()
 
+        # Loop through each section
+        for sec in distinct_sec_nums:
+            q = Questions.query.filter(Questions.section == sec).first()
+            q_dict = q.to_dict()
+            sec_name = q_dict['section_name']
+            print("section, sec name: ", sec, sec_name)
+            if sec <= int(max_recs[0]):
+                resp_text, complete = rec_logic(c_id_from_cookie, sec)
+                print("[api] Resp text: ", resp_text)
+                # Add to recommendations table
+                rcs = Recommendations(
+                company_id = c_id_from_cookie,
+                section = sec,
+                section_name = sec_name,
+                rec_text = resp_text,
+                flagged = 0,
+                completed = complete
+                )
 
-        rspns = Responses.query.filter_by(company_id = c_id_from_cookie)
-        res_list = [r.to_dict() for r in rspns]
-        for i in range(len(res_list)):
-            print(res_list[i])
+                # Add and commit
+                db.session.add(rcs)
+                db.session.commit()
 
-        return jsonify([r.to_dict() for r in rspns])
+        recs = Recommendations.query.filter(Recommendations.company_id == c_id_from_cookie).all()
+        return jsonify([r.to_dict() for r in recs])
 
 
 

@@ -1,5 +1,5 @@
 from flask import jsonify, Blueprint, request
-from wattx_app.models.models import Questions
+from wattx_app.models.models import Questions, RecText
 from wattx_app.controller.security import require_cookie
 
 bp = Blueprint('ping', __name__)
@@ -8,6 +8,10 @@ bp = Blueprint('ping', __name__)
 def ping():
     return jsonify({'code': 'ping success!'})
 
+@bp.route('/rectxt')
+def rectxt():
+    qns = RecText.query.all()
+    return jsonify([q.to_dict() for q in qns])
 
 @bp.route('/set_cookie')
 def cookie_insertion():
