@@ -248,10 +248,10 @@ function selection() {
 	}
 }
 $("#completed").click(function() {
-			selection();
-		});
+		selection();
+});
 
 $("#flag").click(function() {
-	selection();
+		selection();
 });
 
