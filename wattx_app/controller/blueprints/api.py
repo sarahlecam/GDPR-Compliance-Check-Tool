@@ -142,22 +142,32 @@ def get_recs():
             q = Questions.query.filter(Questions.section == sec).first()
             q_dict = q.to_dict()
             sec_name = q_dict['section_name']
-            print("section, sec name: ", sec, sec_name)
             if sec <= int(max_recs[0]):
                 resp_text, complete = rec_logic(c_id_from_cookie, sec)
-                print("[api] Resp text: ", resp_text)
-                # Add to recommendations table
-                rcs = Recommendations(
-                company_id = c_id_from_cookie,
-                section = sec,
-                section_name = sec_name,
-                rec_text = resp_text,
-                flagged = 0,
-                completed = complete
-                )
+                # If rec exists, update it.
+                if (Recommendations.query.filter(Recommendations.company_id == c_id_from_cookie)\
+                .filter(Recommendations.section == sec).count() > 0):
+                    rec = Recommendations.query.filter(Recommendations.company_id == c_id_from_cookie)\
+                    .filter(Recommendations.section == sec).first()
+                    rec.section_name = sec_name
+                    rec.rec_text = resp_text
+                    rec.flagged = 0
+                    rec.completed = 0
 
-                # Add and commit
-                db.session.add(rcs)
+                    # Add session
+                    db.session.add(rec)
+                else:
+                    # Add to recommendations table
+                    rcs = Recommendations(
+                    company_id = c_id_from_cookie,
+                    section = sec,
+                    section_name = sec_name,
+                    rec_text = resp_text,
+                    flagged = 0,
+                    completed = complete
+                    )
+                    # Add and commit
+                    db.session.add(rcs)
                 db.session.commit()
 
         recs = Recommendations.query.filter(Recommendations.company_id == c_id_from_cookie).all()
@@ -175,8 +185,10 @@ def update_rec(id1):
     # Update rec with contents of body
     rec = Recommendations.query.filter(Recommendations.company_id == c_id_from_cookie)\
     .filter(Recommendations.section == id1).first()
-    rec.flagged = body['flagged']
-    rec.completed = body['completed']
+    if 'flagged' in body:
+        rec.flagged = body['flagged']
+    if 'completed' in body:
+        rec.completed = body['completed']
 
     # Commit session
     db.session.commit()
