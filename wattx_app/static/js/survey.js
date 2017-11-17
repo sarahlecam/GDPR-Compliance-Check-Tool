@@ -19,6 +19,10 @@ $(function(){
 
 function displayNextQuestion () {
     if (questionNumber == numQuestions) {
+        $.ajax({
+            url: "api/recs",
+            type: "POST",
+        });
         window.location.href = "checklist.html";
     } else {
         questionNumber++;
