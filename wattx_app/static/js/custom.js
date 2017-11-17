@@ -135,6 +135,7 @@ $(document).ready(function() {
     // $('#contact').parallax("100%", 0.2);
     $('#survey').parallax("100%", 0.3);
     $('#login').parallax("100%", 0.3);
+    $('#checklist').parallax("100%", 0.3);
   }
   initParallax();
 

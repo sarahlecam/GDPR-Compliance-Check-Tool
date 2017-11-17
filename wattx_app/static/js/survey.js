@@ -19,7 +19,7 @@ $(function(){
 
 function displayNextQuestion () {
     if (questionNumber == numQuestions) {
-        window.location.href = "index.html";
+        window.location.href = "checklist.html";
     } else {
         questionNumber++;
         form_div.empty();
@@ -48,8 +48,8 @@ function getQuestion(qNumber) {
                 + `</h2>`
                 + question.question
                 + `<form id="privacyField">`
-                + `<input type="radio" name="response" value="true"> Yes<br>`
-                + `<input type="radio" name="response" value="false"> No<br>`
+                + `<input type="radio" name="response" value="true" id="1"> Yes<br>`
+                + `<input type="radio" name="response" value="false" id="2"> No<br>`
                 + `<button type="submit" onClick="saveData(); return false;">Continue</button>`
                 + `</form>`
                 + `</div>`).appendTo("#form");
@@ -64,8 +64,8 @@ function getQuestion(qNumber) {
                 + `</h2>`
                 + question.question
                 + `<form id="privacyField">`
-                + `<input type="radio" name="response" value="true" required> Yes<br>`
-                + `<input type="radio" name="response" value="false" required> No<br>`
+                + `<input type="radio" name="response" value="true"> Yes<br>`
+                + `<input type="radio" name="response" value="false"> No<br>`
                 + `<button onClick="goBack(); return false;">Back</button>`
                 + `<button type="submit" onClick="saveData(); return false;">Continue</button>`
                 + `</form>`
@@ -90,7 +90,6 @@ function saveData() {
             },
             error: function (){
                // console.log("nope");
-
     //            alert("Your receipt entry was not properly processed. Please resubmit your receipt information.");
             }
         });
@@ -102,3 +101,4 @@ function goBack() {
     questionNumber = questionNumber - 2;
     displayNextQuestion ();
 }
+

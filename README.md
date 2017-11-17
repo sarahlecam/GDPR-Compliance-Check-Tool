@@ -1,4 +1,15 @@
 # WATTx-Team
-Code and team repository for WATTx Team
+Code and team repository for CheckMate, a GDPR compliance checklist service.
 
-For more information on this project, please visit our [team page](https://github.com/ct-product-challenge-2017/wattx-data-sharing)
+## Usage
+To enter your virtual environment:
+`source activate wattx-env`
+
+To first establish a cleared database run:
+`python run.py --reset-db`
+
+To import the questions.csv file into the database:
+`python run.py --import-ques questions.csv`
+
+To run the server after set up:
+`python run.py`
