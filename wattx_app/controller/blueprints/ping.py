@@ -1,6 +1,7 @@
-from flask import jsonify, Blueprint, request
+from flask import jsonify, Blueprint, request, current_app
 from wattx_app.models.models import Questions, RecText
 from wattx_app.controller.security import require_cookie
+from itsdangerous import URLSafeTimedSerializer
 
 bp = Blueprint('ping', __name__)
 
@@ -23,7 +24,12 @@ def cookie_insertion():
 @bp.route('/read_cookie')
 @require_cookie
 def read_cookie():
-    return request.cookies.get('company_id')
+    # unserialize cookie payload
+    key = current_app.config['SECRET_KEY']
+    serializer = URLSafeTimedSerializer(secret_key = key)
+    payload = request.cookies.get('CheckMateCookie')
+    cookie_contents = serializer.loads(payload)
+    return jsonify(cookie_contents)
 
 @bp.route("/insecure", methods=['GET', 'POST'])
 def ping_insecure():

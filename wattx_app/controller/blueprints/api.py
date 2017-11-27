@@ -1,22 +1,30 @@
-from flask import jsonify, Blueprint, request, abort
+from flask import jsonify, Blueprint, request, abort, current_app
 from wattx_app.models.models import Users, Questions, Responses, RecText, Recommendations
 from wattx_app.controller.security import require_cookie
 from wattx_app.controller.recommend_logic import rec_logic
 from wattx_app.models import db
 from sqlalchemy.sql.expression import func
+import bcrypt
+from itsdangerous import URLSafeTimedSerializer
 
 bp = Blueprint('api', __name__)
 
 # User information
 @bp.route("/users", methods = ['GET'])
-@require_cookie
+# @require_cookie
 def get_user():
-    # Get company_id from cookie
-    c_id_from_cookie = int(request.cookies.get('company_id'))
-    usr = Users.query.filter(Users.company_id == c_id_from_cookie).first()
-    return jsonify(usr.to_dict())
+    usrs = Users.query.all()
+    return jsonify([u.to_dict() for u in usrs])
+    ###########
 
-@bp.route("/users", methods = ['POST'])
+
+    # # Get company_id from cookie
+    # c_id_from_cookie = int(request.cookies.get('company_id'))
+    # usr = Users.query.filter(Users.company_id == c_id_from_cookie).first()
+    # return jsonify(usr.to_dict())
+
+# TODO: This needs to be SIGNUP
+@bp.route("/users/signup", methods = ['POST'])
 def enterprise_view():
 
     print('-'*50)
@@ -37,17 +45,66 @@ def enterprise_view():
         e = Users(
         company_name = body['company_name'],
         email = body['email'],
-        password = body['password']
+        password = bcrypt.hashpw(body['password'].encode('utf-8'), bcrypt.gensalt(10)) # bcrypt hashed password
         )
 
         db.session.add(e)
         db.session.commit()
 
-
-    # Return company id
-    r = jsonify(e.to_dict())
-    r.set_cookie('company_id', value = str(e.company_id))
+    # Create cookie
+    e_dict = e.to_dict()
+    key = current_app.config['SECRET_KEY']
+    # make payload with itsdangerous.URLSafeTimedSerializer
+    serializer = URLSafeTimedSerializer(secret_key = key)
+    cookie_data = {
+        'company_id': e_dict['company_id'],
+        'company_name': e_dict['company_name']
+    }
+    payload = serializer.dumps(cookie_data)
+    r = jsonify({'Login': 'Login successful'})
+    # put that payload in cookie on user's browser
+    r.set_cookie('CheckMateCookie', value = payload)
     return r
+
+@bp.route('/users/login', methods=['POST'])
+def login_view():
+
+    # get username/password from body json
+    body = request.json
+    print(body)
+    # get user object from database
+        # if user doesn't exist, abort(401)
+    if (Users.query.filter_by(email=body['email']).count() > 0):
+        usr = Users.query.filter_by(email=body['email']).first()
+        usr_dict = usr.to_dict()
+    else:
+        abort(401)
+
+    # check inbound password against user.password with bcrypt.checkpwd
+    # Get hashed pw from user object
+    hashed_pw = usr_dict['password'].encode('utf-8')
+    inbound_pw = body['password'].encode('utf-8')
+    if bcrypt.checkpw(inbound_pw, hashed_pw):
+        # It matches, make them a cookie
+        key = current_app.config['SECRET_KEY']
+        # make payload with itsdangerous.URLSafeTimedSerializer
+        serializer = URLSafeTimedSerializer(secret_key = key)
+        cookie_data = {
+            'company_id': usr_dict['company_id'],
+            'company_name': usr_dict['company_name']
+        }
+        payload = serializer.dumps(cookie_data)
+        r = jsonify({'Login': 'Login successful'})
+        # put that payload in cookie on user's browser
+        r.set_cookie('CheckMateCookie', value = payload)
+        # return good status
+        return r
+    else:
+        # It does not match, don't make a cookie
+        r = jsonify({'Login error': 'Email and/or password do not match'})
+        r.status_code = 401
+        # return bad status
+        return r
 
 
 # Questions
@@ -69,7 +126,11 @@ def get_question(id1):
 @require_cookie
 def get_responses():
     # Get company_id from cookie
-    c_id_from_cookie = int(request.cookies.get('company_id'))
+    key = current_app.config['SECRET_KEY']
+    serializer = URLSafeTimedSerializer(secret_key = key)
+    payload = request.cookies.get('CheckMateCookie')
+    cookie_contents = serializer.loads(payload)
+    c_id_from_cookie = int(cookie_contents['company_id'])
 
     if request.method == 'GET':
         rsps = Responses.query.filter_by(company_id = c_id_from_cookie).all()
@@ -96,7 +157,7 @@ def get_responses():
 
             r = Responses(
             question_id = body['question_id'],
-            company_id = int(request.cookies.get('company_id')),
+            company_id = c_id_from_cookie,
             response = body['response']
             )
 
@@ -111,7 +172,11 @@ def get_responses():
 @require_cookie
 def get_specific_resp(id1):
     # Get company_id from cookie
-    c_id_from_cookie = int(request.cookies.get('company_id'))
+    key = current_app.config['SECRET_KEY']
+    serializer = URLSafeTimedSerializer(secret_key = key)
+    payload = request.cookies.get('CheckMateCookie')
+    cookie_contents = serializer.loads(payload)
+    c_id_from_cookie = int(cookie_contents['company_id'])
 
     if request.method == 'GET':
         r = Responses.query.filter(Responses.company_id == c_id_from_cookie).filter(Responses.question_id == id1).first()
@@ -123,7 +188,11 @@ def get_specific_resp(id1):
 @require_cookie
 def get_recs():
     # Get company_id from cookie
-    c_id_from_cookie = int(request.cookies.get('company_id'))
+    key = current_app.config['SECRET_KEY']
+    serializer = URLSafeTimedSerializer(secret_key = key)
+    payload = request.cookies.get('CheckMateCookie')
+    cookie_contents = serializer.loads(payload)
+    c_id_from_cookie = int(cookie_contents['company_id'])
 
     if request.method == 'GET':
         recs = Recommendations.query.filter_by(company_id = c_id_from_cookie).all()
@@ -178,7 +247,11 @@ def get_recs():
 @require_cookie
 def update_rec(id1):
     # Get company_id from cookie
-    c_id_from_cookie = int(request.cookies.get('company_id'))
+    key = current_app.config['SECRET_KEY']
+    serializer = URLSafeTimedSerializer(secret_key = key)
+    payload = request.cookies.get('CheckMateCookie')
+    cookie_contents = serializer.loads(payload)
+    c_id_from_cookie = int(cookie_contents['company_id'])
 
     # Get request body
     body = request.json
@@ -202,7 +275,11 @@ def update_rec(id1):
 @require_cookie
 def filter_recs():
     # Get company_id from cookie
-    c_id_from_cookie = int(request.cookies.get('company_id'))
+    key = current_app.config['SECRET_KEY']
+    serializer = URLSafeTimedSerializer(secret_key = key)
+    payload = request.cookies.get('CheckMateCookie')
+    cookie_contents = serializer.loads(payload)
+    c_id_from_cookie = int(cookie_contents['company_id'])
 
     # Get request args
     flagged_setting = request.args.get('flagged')

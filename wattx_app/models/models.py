@@ -18,8 +18,9 @@ class Users(db.Model):
             'company_id' : self.company_id,
             'company_name' : self.company_name,
             'email' : self.email,
-            'password' : self.password,
+            'password' : self.password.decode('utf-8'),
         }
+
 
 class Questions(db.Model):
     ''' contains survey questions for companies'''
