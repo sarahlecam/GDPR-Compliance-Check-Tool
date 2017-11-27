@@ -324,6 +324,7 @@ a:focus {
   padding: 13px 30px;
   margin-top: 15px;
   text-transform: uppercase;
+  margin-left: 12px
 }
 
 .navbar-default .btn:hover,

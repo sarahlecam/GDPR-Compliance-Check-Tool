@@ -37,6 +37,7 @@ function logInUser() {
 	var password = $("#password_login").val();
   console.log(password)
 
+
 	$.ajax({
         url: "/api/users/login",
         type: "POST",
@@ -48,8 +49,14 @@ function logInUser() {
            window.location.href = "survey.html";
             // getInputs(id);
         },
-        error: function (){
-           alert("Email and/or password does not match. Try again.");
+         error: function(jqxhr) {
+            error_code = jqxhr.status;
+            if (error_code == 401)
+            {
+              $("#error_area").text("Email and/or password does not match. Try again.");
+            }
+        // error: function (){
+        //    alert("Email and/or password does not match. Try again.");
         }
     });
 
