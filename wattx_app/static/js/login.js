@@ -61,3 +61,25 @@ function logInUser() {
     });
 
 }
+
+function log() {
+    if (!login_div.is(":visible")) {
+        signup_div.hide();
+        login_div.show();
+        $("#title").text("Login");
+        $("#switch2").css("background", "#transparent");
+        $("#switch1").css("background", "#ffffff");
+    }
+}
+
+function sign() {
+    if (login_div.is(":visible")) {
+        login_div.hide();
+        signup_div.show();
+        $("#title").text("Sign Up");
+        $("#switch1").css({"background-color": "transparent"});
+        // $("#switch2").css("background", "#ffffff");
+    }
+}
+
+
