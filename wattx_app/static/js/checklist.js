@@ -7,6 +7,10 @@ var check_div;
 
 $(function(){
     check_div = $("#recommendations");
+    $.ajax({
+            url: "api/recs",
+            type: "POST",
+     });
     getRecommendations();
 });
 

@@ -46,7 +46,7 @@ function logInUser() {
         dataType: "json",
         success: function (id) {
            // console.log("success");
-           window.location.href = "survey.html";
+           window.location.href = "checklist.html";
             // getInputs(id);
         },
          error: function(jqxhr) {
