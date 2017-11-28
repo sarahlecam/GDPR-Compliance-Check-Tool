@@ -104,9 +104,13 @@ function getQuestion(qNumber) {
         dataType: "json",
         success: function (response) {
            if (response.response == "true") {
-                checkRadio("true");
+                setTimeout(function(){
+                    checkRadio("true");
+                }, 10);
             } else {
-                checkRadio("false");
+                setTimeout(function(){
+                    checkRadio("false");
+                }, 10);
             }
         },
         error: function (){
