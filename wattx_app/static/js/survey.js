@@ -28,7 +28,7 @@ function displayNextQuestion () {
             dataType: "json",
             success: function (responses) {
                 qNumber = responses.length;
-                if (qNumber == numQuestions) {
+                if (qNumber >= numQuestions) {
                     window.location.href = "checklist.html";
                 } else {
                   getQuestion(qNumber + 1);  
