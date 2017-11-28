@@ -1023,17 +1023,59 @@ footer strong {
   border-radius: 5px;
   cursor: pointer;
   /*font-size: 20px;*/
-  border: 2px solid;
+  border: 3px solid;
   border-color: #ffffff;
+  /*text-transform: uppercase;*/
+}
+
+#contact-form button:hover {
+  background: #ffffff !important;
+  color:  #6e7d93;
+  border-color: #6e7d93;
 }
 
 
-#login_div {
+#login_div, #signup_div {
+  /*vertical-align: middle;*/
   margin-top:40px;
   margin-bottom:80px;
+  min-height: 25vh;
 }
 
-#/*home2 {
+#signup_div {
+  display: none;
+}
+
+#switch1, #switch2  {
+  margin-right: 10px;
+  margin-left: 10px;
+  margin-top: 20px;
+  background: transparent;
+  border: 3px solid #ffffff;
+  color: #ffffff;
+  font-size: 12px;
+  letter-spacing: 2px;
+  padding: 13px 30px;
+  text-transform: uppercase;
+  margin-left: 12px;
+}
+
+#switch1:hover, 
+#switch2:hover,
+#switch1:focus,
+#switch2:focus {
+  background: #ffffff !important;
+  color:  #6e7d93;
+  border-color: #6e7d93;
+}
+
+#switch1 {
+  background: #ffffff !important;
+  color:  #6e7d93;
+  border-color: #6e7d93;
+}
+
+/*#home2 {
   margin-top: 100px;
 }*/
 

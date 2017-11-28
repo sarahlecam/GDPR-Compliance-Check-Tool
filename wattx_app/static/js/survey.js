@@ -19,14 +19,26 @@ $(function(){
 
 function displayNextQuestion () {
     if (questionNumber == numQuestions) {
-        $.ajax({
-            url: "api/recs",
-            type: "POST",
-        });
         window.location.href = "checklist.html";
+    } else if (questionNumber == 0) {
+        $.ajax({
+            url: "/api/responses",
+            type: "GET",
+            contentType: "application/json",
+            dataType: "json",
+            success: function (responses) {
+                qNumber = responses.length;
+                if (qNumber >= numQuestions) {
+                    window.location.href = "checklist.html";
+                } else {
+                  getQuestion(qNumber + 1);  
+                }
+            },
+            error: function (){
+            }
+        });
     } else {
         questionNumber++;
-        form_div.empty();
         getQuestion(questionNumber);
     }
 }
@@ -42,6 +54,8 @@ function getNumQuestions() {
 }
 
 function getQuestion(qNumber) {
+    questionNumber = qNumber;
+    form_div.empty();
     if (qNumber == 1) {
         $.getJSON("api/questions/" + qNumber, function(question){
             $(`<div class="question">`
@@ -81,6 +95,23 @@ function getQuestion(qNumber) {
                 + `</div>`).appendTo("#form");
         });
     }
+    $.ajax({
+        url: "/api/responses/" + qNumber,
+        type: "GET",
+        contentType: "application/json",
+        dataType: "json",
+        success: function (response) {
+           if (response.response == "true") {
+                checkRadio("true");
+            } else {
+                checkRadio("false");
+            }
+        },
+        error: function (){
+           // console.log("nope");
+//            alert("Your receipt entry was not properly processed. Please resubmit your receipt information.");
+        }
+    });
 }
 
 function saveData() {
@@ -106,9 +137,78 @@ function saveData() {
     }
 }
 
+(function($) {    
+  if ($.fn.style) {
+    return;
+  }
+
+  // Escape regex chars with \
+  var escape = function(text) {
+    return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+  };
+
+  // For those who need them (< IE 9), add support for CSS functions
+  var isStyleFuncSupported = !!CSSStyleDeclaration.prototype.getPropertyValue;
+  if (!isStyleFuncSupported) {
+    CSSStyleDeclaration.prototype.getPropertyValue = function(a) {
+      return this.getAttribute(a);
+    };
+    CSSStyleDeclaration.prototype.setProperty = function(styleName, value, priority) {
+      this.setAttribute(styleName, value);
+      var priority = typeof priority != 'undefined' ? priority : '';
+      if (priority != '') {
+        // Add priority manually
+        var rule = new RegExp(escape(styleName) + '\\s*:\\s*' + escape(value) +
+            '(\\s*;)?', 'gmi');
+        this.cssText =
+            this.cssText.replace(rule, styleName + ': ' + value + ' !' + priority + ';');
+      }
+    };
+    CSSStyleDeclaration.prototype.removeProperty = function(a) {
+      return this.removeAttribute(a);
+    };
+    CSSStyleDeclaration.prototype.getPropertyPriority = function(styleName) {
+      var rule = new RegExp(escape(styleName) + '\\s*:\\s*[^\\s]*\\s*!important(\\s*;)?',
+          'gmi');
+      return rule.test(this.cssText) ? 'important' : '';
+    }
+  }
+
+
+  // The style function
+  $.fn.style = function(styleName, value, priority) {
+    // DOM node
+    var node = this.get(0);
+    // Ensure we have a DOM node
+    if (typeof node == 'undefined') {
+      return this;
+    }
+    // CSSStyleDeclaration
+    var style = this.get(0).style;
+    // Getter/Setter
+    if (typeof styleName != 'undefined') {
+      if (typeof value != 'undefined') {
+        // Set style property
+        priority = typeof priority != 'undefined' ? priority : '';
+        style.setProperty(styleName, value, priority);
+        return this;
+      } else {
+        // Get style property
+        return style.getPropertyValue(styleName);
+      }
+    } else {
+      // Get CSSStyleDeclaration
+      return style;
+    }
+  };
+})(jQuery);
+
 function goBack() {
     questionNumber = questionNumber - 2;
     displayNextQuestion ();
-
 }
+
+function checkRadio (value) {
+    $('input[name=response][value=' + value + ']').attr('checked', 'checked');
+ }
 
