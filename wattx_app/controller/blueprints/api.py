@@ -179,8 +179,8 @@ def get_specific_resp(id1):
 
     if request.method == 'GET':
         r = Responses.query.filter(Responses.company_id == c_id_from_cookie).filter(Responses.question_id == id1).first()
-        if r is None:
-            return jsonify({'No response': 'Invalid ID'})
+        # if r is None:
+            # return jsonify({'No response': 'Invalid ID'})
         return jsonify(r.to_dict())
 
 

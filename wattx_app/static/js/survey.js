@@ -20,24 +20,26 @@ $(function(){
 function displayNextQuestion () {
     if (questionNumber == numQuestions) {
         window.location.href = "checklist.html";
-    } else if (questionNumber == 0) {
-        $.ajax({
-            url: "/api/responses",
-            type: "GET",
-            contentType: "application/json",
-            dataType: "json",
-            success: function (responses) {
-                qNumber = responses.length;
-                if (qNumber >= numQuestions) {
-                    window.location.href = "checklist.html";
-                } else {
-                  getQuestion(qNumber + 1);  
-                }
-            },
-            error: function (){
-            }
-        });
-    } else {
+    } 
+    // else if (questionNumber == 0) {
+    //     $.ajax({
+    //         url: "/api/responses",
+    //         type: "GET",
+    //         contentType: "application/json",
+    //         dataType: "json",
+    //         success: function (responses) {
+    //             qNumber = responses.length;
+    //             if (qNumber >= numQuestions) {
+    //                 window.location.href = "checklist.html";
+    //             } else {
+    //               getQuestion(qNumber + 1);  
+    //             }
+    //         },
+    //         error: function (){
+    //         }
+    //     });
+    // } 
+    else {
         questionNumber++;
         getQuestion(questionNumber);
     }
