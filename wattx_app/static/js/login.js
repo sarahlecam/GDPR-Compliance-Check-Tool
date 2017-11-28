@@ -61,14 +61,84 @@ function logInUser() {
     });
 
 }
+(function($) {    
+  if ($.fn.style) {
+    return;
+  }
+
+  // Escape regex chars with \
+  var escape = function(text) {
+    return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+  };
+
+  // For those who need them (< IE 9), add support for CSS functions
+  var isStyleFuncSupported = !!CSSStyleDeclaration.prototype.getPropertyValue;
+  if (!isStyleFuncSupported) {
+    CSSStyleDeclaration.prototype.getPropertyValue = function(a) {
+      return this.getAttribute(a);
+    };
+    CSSStyleDeclaration.prototype.setProperty = function(styleName, value, priority) {
+      this.setAttribute(styleName, value);
+      var priority = typeof priority != 'undefined' ? priority : '';
+      if (priority != '') {
+        // Add priority manually
+        var rule = new RegExp(escape(styleName) + '\\s*:\\s*' + escape(value) +
+            '(\\s*;)?', 'gmi');
+        this.cssText =
+            this.cssText.replace(rule, styleName + ': ' + value + ' !' + priority + ';');
+      }
+    };
+    CSSStyleDeclaration.prototype.removeProperty = function(a) {
+      return this.removeAttribute(a);
+    };
+    CSSStyleDeclaration.prototype.getPropertyPriority = function(styleName) {
+      var rule = new RegExp(escape(styleName) + '\\s*:\\s*[^\\s]*\\s*!important(\\s*;)?',
+          'gmi');
+      return rule.test(this.cssText) ? 'important' : '';
+    }
+  }
+
+
+  // The style function
+  $.fn.style = function(styleName, value, priority) {
+    // DOM node
+    var node = this.get(0);
+    // Ensure we have a DOM node
+    if (typeof node == 'undefined') {
+      return this;
+    }
+    // CSSStyleDeclaration
+    var style = this.get(0).style;
+    // Getter/Setter
+    if (typeof styleName != 'undefined') {
+      if (typeof value != 'undefined') {
+        // Set style property
+        priority = typeof priority != 'undefined' ? priority : '';
+        style.setProperty(styleName, value, priority);
+        return this;
+      } else {
+        // Get style property
+        return style.getPropertyValue(styleName);
+      }
+    } else {
+      // Get CSSStyleDeclaration
+      return style;
+    }
+  };
+})(jQuery);
+
 
 function log() {
     if (!login_div.is(":visible")) {
         signup_div.hide();
         login_div.show();
         $("#title").text("Login");
-        $("#switch2").css("background", "#transparent");
-        $("#switch1").css("background", "#ffffff");
+        $("#switch2").style("background", "transparent", "important");
+        $("#switch2").style("color", "#ffffff", "important");
+        $("#switch2").style("border-color", "#ffffff", "important");
+        $("#switch1").style("background", "#ffffff", "important");
+        $("#switch1").style("color", "#6e7d93", "important");
+        $("#switch1").style("border-color", "#6e7d93", "important");
     }
 }
 
@@ -77,7 +147,12 @@ function sign() {
         login_div.hide();
         signup_div.show();
         $("#title").text("Sign Up");
-        $("#switch1").css({"background-color": "transparent"});
+        $("#switch1").style("background", "transparent", "important");
+        $("#switch1").style("color", "#ffffff", "important");
+        $("#switch1").style("border-color", "#ffffff", "important");
+        $("#switch2").style("background", "#ffffff", "important");
+        $("#switch2").style("color", "#6e7d93", "important");
+        $("#switch2").style("border-color", "#6e7d93", "important");
         // $("#switch2").css("background", "#ffffff");
     }
 }
