@@ -23,13 +23,12 @@ def get_user():
     # usr = Users.query.filter(Users.company_id == c_id_from_cookie).first()
     # return jsonify(usr.to_dict())
 
-# TODO: This needs to be SIGNUP
 @bp.route("/users/signup", methods = ['POST'])
 def enterprise_view():
 
-    print('-'*50)
-    print(request.data)
-    print('-'*50)
+    # print('-'*50)
+    # print(request.data)
+    # print('-'*50)
 
     # Extract body from request
     body = request.json
@@ -71,7 +70,7 @@ def login_view():
 
     # get username/password from body json
     body = request.json
-    print(body)
+
     # get user object from database
         # if user doesn't exist, abort(401)
     if (Users.query.filter_by(email=body['email']).count() > 0):
@@ -151,9 +150,9 @@ def get_responses():
         # otherwise create a new entry for it
         else:
 
-            print('-'*50)
-            print(request.data)
-            print('-'*50)
+            # print('-'*50)
+            # print(request.data)
+            # print('-'*50)
 
             r = Responses(
             question_id = body['question_id'],
@@ -195,7 +194,7 @@ def get_recs():
     c_id_from_cookie = int(cookie_contents['company_id'])
 
     if request.method == 'GET':
-        recs = Recommendations.query.filter_by(company_id = c_id_from_cookie).all()
+        recs = Recommendations.query.filter_by(company_id = c_id_from_cookie).order_by(Recommendations.section).all()
         return jsonify([r.to_dict() for r in recs])
 
     if request.method == 'POST':
@@ -208,6 +207,7 @@ def get_recs():
 
         # Loop through each section
         for sec in distinct_sec_nums:
+            # Get section name
             q = Questions.query.filter(Questions.section == sec).first()
             q_dict = q.to_dict()
             sec_name = q_dict['section_name']
@@ -220,8 +220,7 @@ def get_recs():
                     .filter(Recommendations.section == sec).first()
                     rec.section_name = sec_name
                     rec.rec_text = resp_text
-                    rec.flagged = 0
-                    rec.completed = 0
+                    rec.completed = complete
 
                     # Add session
                     db.session.add(rec)
@@ -240,7 +239,7 @@ def get_recs():
                 # Commit session
                 db.session.commit()
 
-        recs = Recommendations.query.filter(Recommendations.company_id == c_id_from_cookie).all()
+        recs = Recommendations.query.filter(Recommendations.company_id == c_id_from_cookie).order_by(Recommendations.section).all()
         return jsonify([r.to_dict() for r in recs])
 
 @bp.route("/recs/<int:id1>", methods = ['POST'])
@@ -283,9 +282,7 @@ def filter_recs():
 
     # Get request args
     flagged_setting = request.args.get('flagged')
-    print("Flagged setting: ", flagged_setting)
     completed_setting = request.args.get('completed')
-    print("Completed setting: ", completed_setting)
 
     if flagged_setting is not None and completed_setting is not None:
         recs = Recommendations.query.filter(Recommendations.company_id == c_id_from_cookie)\
