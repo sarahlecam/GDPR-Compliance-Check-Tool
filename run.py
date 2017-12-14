@@ -84,13 +84,15 @@ def cli():
             print('Recommendations table is not empty.')
     #print(wattx_app.check_shit())
 
-    if port_num is not None:
-        app.run(port=port_num)
-    else:
-        app.run(debug=True)#, use_reloader=False)
+    return app
+    # if port_num is not None:
+    #     app.run(port=port_num)
+    # else:
+    #     app.run(debug=True)#, use_reloader=False)
     # Set use_reloader to flase, or debug=False to prevent reloading
     # and therefore duplication of questions into table
 
+app = cli()
 
 if __name__ == '__main__':
-    cli()
+    app.run(debug=True)
