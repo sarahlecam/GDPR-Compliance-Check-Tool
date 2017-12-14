@@ -7,6 +7,7 @@ from wattx_app.models.models import Questions, RecText
 
 def cli():
     p = argparse.ArgumentParser()
+    p.add_argument('')
     p.add_argument('--reset-db', help='drop and recreate db', dest='reset_db', action='store_true')
     p.add_argument('--import-ques', help='import questions from csv file', dest='filepath_ques')
     p.add_argument('--import-recs', help='import recommendations from csv file', dest='filepath_rec')
@@ -70,8 +71,10 @@ def cli():
             print('r is not empty')
     #print(wattx_app.check_shit())
 
-
-    app.run(debug=True)#, use_reloader=False)
+    if os.environ.get('PORT'):
+        app.run(port=os.environ.get('PORT'))
+    else:
+        app.run(debug=True)#, use_reloader=False)
     # Set use_reloader to flase, or debug=False to prevent reloading
     # and therefore duplication of questions into table
 
