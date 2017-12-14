@@ -15,6 +15,7 @@ def has_cookie():
             return True
         except:
             print("didnt work")
+            print(serializer.loads(payload, max_age = (30*60)))
             return False
     return False
 
