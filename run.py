@@ -1,6 +1,9 @@
 import argparse
 import wattx_app
+import csv
 import os
+from wattx_app.models import models
+from wattx_app.models.models import Questions, RecText
 
 def cli():
     p = argparse.ArgumentParser()
@@ -20,7 +23,55 @@ def cli():
         wattx_app.import_recs(os.path.abspath(args.filepath_rec))
 
     app = wattx_app.create_app()
-    app.run(debug=True, use_reloader=False)
+
+    # Check if Questions and RecText tables are filled. If not, fill them.
+    with app.app_context():
+        # Questions table
+        q = Questions.query.first()
+        if q is None:
+            print('q iz empty. fillin it up!')
+            with open(os.path.abspath('questions.csv'), newline='') as f:
+                reader = csv.reader(f, delimiter = ',')
+                next(reader)
+                for row in reader:
+                    try:
+                        descval = row[5]
+                    except IndexError:
+                        descval = 'null'
+                    q = Questions(
+                    question = row[0],
+                    response_type = row[1],
+                    order = row[2],
+                    section = row[3],
+                    section_name = row[4],
+                    description = descval
+                    )
+                    models.db.session.add(q)
+                models.db.session.commit()
+        else:
+            print('q iz not empty')
+
+        # RecText table
+        r = RecText.query.first()
+        if r is None:
+            print('r is empty. fillin it up!')
+            with open(os.path.abspath('recommendations.csv'), newline='') as f:
+                reader = csv.reader(f, delimiter=',')
+                next(reader)
+                for row in reader:
+                    rt = RecText(
+                    rec_text = row[0].strip(),
+                    section = row[1],
+                    completed = row[2]
+                    )
+                    models.db.session.add(rt)
+                models.db.session.commit()
+        else:
+            print('r is not empty')
+    #print(wattx_app.check_shit())
+
+
+    app.run(debug=True)#, use_reloader=False)
     # Set use_reloader to flase, or debug=False to prevent reloading
     # and therefore duplication of questions into table
 
