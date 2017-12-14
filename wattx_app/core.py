@@ -16,7 +16,7 @@ def create_app():
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///../test.db'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 20
-    app.config['SECRET_KEY'] = os.urandom(24) # Randomly generated secret key
+    app.config['SECRET_KEY'] = b'5\xf8\xcd\xaf\x99\x91SR\xa3\x1c\x9a\x10\xdc\x92\xe0\xcf\x81\xcb\xfc\xd0\xb3r\x9e#' #os.urandom(24) # Randomly generated secret key
     # app.config['STATIC_FOLDER']='static'
     models.db.init_app(app)
 
