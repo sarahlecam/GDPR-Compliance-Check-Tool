@@ -7,14 +7,20 @@ from wattx_app.models.models import Questions, RecText
 
 def cli():
     p = argparse.ArgumentParser()
+    p.add_argument('--port', help='specify port to run on', dest='filepath_port')
     p.add_argument('--reset-db', help='drop and recreate db', dest='reset_db', action='store_true')
     p.add_argument('--import-ques', help='import questions from csv file', dest='filepath_ques')
     p.add_argument('--import-recs', help='import recommendations from csv file', dest='filepath_rec')
 
     args = p.parse_args()
+    print(args)
 
     if args.reset_db:
         wattx_app.reset_db()
+
+    port_num = None
+    if args.filepath_port is not None:
+        port_num = args.filepath_port
 
     if args.filepath_ques is not None:
         wattx_app.import_questions(os.path.abspath(args.filepath_ques))
@@ -26,10 +32,18 @@ def cli():
 
     # Check if Questions and RecText tables are filled. If not, fill them.
     with app.app_context():
+        try:
+            qns = Questions.query.first()
+            print('Database exists')
+        except:
+            print('Resetting database')
+            wattx_app.reset_db()
+
+
         # Questions table
         q = Questions.query.first()
         if q is None:
-            print('q iz empty. fillin it up!')
+            print('Questions table is empty. Filling it up.')
             with open(os.path.abspath('questions.csv'), newline='') as f:
                 reader = csv.reader(f, delimiter = ',')
                 next(reader)
@@ -49,12 +63,12 @@ def cli():
                     models.db.session.add(q)
                 models.db.session.commit()
         else:
-            print('q iz not empty')
+            print('Questions table is not empty.')
 
         # RecText table
         r = RecText.query.first()
         if r is None:
-            print('r is empty. fillin it up!')
+            print('Recommendations table is empty. Filling it up.')
             with open(os.path.abspath('recommendations.csv'), newline='') as f:
                 reader = csv.reader(f, delimiter=',')
                 next(reader)
@@ -67,11 +81,11 @@ def cli():
                     models.db.session.add(rt)
                 models.db.session.commit()
         else:
-            print('r is not empty')
+            print('Recommendations table is not empty.')
     #print(wattx_app.check_shit())
 
-    if os.environ.get('PORT'):
-        app.run(port=os.environ.get('PORT'))
+    if port_num is not None:
+        app.run(port=port_num)
     else:
         app.run(debug=True)#, use_reloader=False)
     # Set use_reloader to flase, or debug=False to prevent reloading
