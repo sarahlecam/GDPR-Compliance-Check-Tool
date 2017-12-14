@@ -6,27 +6,26 @@ from wattx_app.models import models
 from wattx_app.models.models import Questions, RecText
 
 def cli():
-    p = argparse.ArgumentParser()
-    p.add_argument('--port', help='specify port to run on', dest='filepath_port')
-    p.add_argument('--reset-db', help='drop and recreate db', dest='reset_db', action='store_true')
-    p.add_argument('--import-ques', help='import questions from csv file', dest='filepath_ques')
-    p.add_argument('--import-recs', help='import recommendations from csv file', dest='filepath_rec')
-
-    args = p.parse_args()
-    print(args)
-
-    if args.reset_db:
-        wattx_app.reset_db()
-
-    port_num = None
-    if args.filepath_port is not None:
-        port_num = args.filepath_port
-
-    if args.filepath_ques is not None:
-        wattx_app.import_questions(os.path.abspath(args.filepath_ques))
-
-    if args.filepath_rec is not None:
-        wattx_app.import_recs(os.path.abspath(args.filepath_rec))
+    # p = argparse.ArgumentParser()
+    # p.add_argument('--port', help='specify port to run on', dest='filepath_port')
+    # p.add_argument('--reset-db', help='drop and recreate db', dest='reset_db', action='store_true')
+    # p.add_argument('--import-ques', help='import questions from csv file', dest='filepath_ques')
+    # p.add_argument('--import-recs', help='import recommendations from csv file', dest='filepath_rec')
+    #
+    # args = p.parse_args()
+    #
+    # if args.reset_db:
+    #     wattx_app.reset_db()
+    #
+    # port_num = None
+    # if args.filepath_port is not None:
+    #     port_num = args.filepath_port
+    #
+    # if args.filepath_ques is not None:
+    #     wattx_app.import_questions(os.path.abspath(args.filepath_ques))
+    #
+    # if args.filepath_rec is not None:
+    #     wattx_app.import_recs(os.path.abspath(args.filepath_rec))
 
     app = wattx_app.create_app()
 
