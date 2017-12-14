@@ -7,7 +7,6 @@ from wattx_app.models.models import Questions, RecText
 
 def cli():
     p = argparse.ArgumentParser()
-    p.add_argument('')
     p.add_argument('--reset-db', help='drop and recreate db', dest='reset_db', action='store_true')
     p.add_argument('--import-ques', help='import questions from csv file', dest='filepath_ques')
     p.add_argument('--import-recs', help='import recommendations from csv file', dest='filepath_rec')
